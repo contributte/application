@@ -24,6 +24,12 @@
 composer require contributte/application
 ```
 
+## Versions
+
+| State       | Version | Branch   | PHP      |
+|-------------|---------|----------|----------|
+| development | `^0.1`  | `master` | `>= 5.6` |
+
 ## Overview
 
 - [LinkGenerator (LinkGeneratorExtension)](https://github.com/contributte/application/blob/master/.docs/README.md#link-generator)
