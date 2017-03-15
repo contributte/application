@@ -28,11 +28,12 @@ composer require contributte/application
 
 | State       | Version | Branch   | PHP      |
 |-------------|---------|----------|----------|
-| development | `^0.1`  | `master` | `>= 5.6` |
+| development | `^0.2`  | `master` | `>= 5.6` |
 
 ## Overview
 
 - [LinkGenerator (LinkGeneratorExtension)](https://github.com/contributte/application/blob/master/.docs/README.md#link-generator)
+- [FlyResponse - send file/buffer on-the-fly](https://github.com/contributte/application/blob/master/.docs/README.md#flyresponse)
 
 ---
 
