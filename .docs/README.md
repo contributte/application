@@ -12,7 +12,7 @@ URL addreses / links out of presenter scope. For example in mail templates.
 
 ```yaml
 extensions:
-    link: Contributte\Application\DI\LinkGeneratorExtesion
+    link: Contributte\Application\DI\LinkGeneratorExtension
 ```
 
 ## FlyResponse
