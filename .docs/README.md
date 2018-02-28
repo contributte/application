@@ -5,6 +5,8 @@
 - [LinkGenerator (LinkGeneratorExtesion)](#link-generator)
 - [UI](#ui)
     - [Presenter](#presenter)
+    - [Control](#control)
+    - [Component](#component)
 - [FlyResponse - send file/buffer on-the-fly](#flyresponse)
 
 ## Link Generator
