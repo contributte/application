@@ -3,6 +3,8 @@
 ## Content
 
 - [LinkGenerator (LinkGeneratorExtesion)](#link-generator)
+- [UI](#ui)
+    - [Presenter](#presenter)
 - [FlyResponse - send file/buffer on-the-fly](#flyresponse)
 
 ## Link Generator
@@ -14,6 +16,25 @@ URL addreses / links out of presenter scope. For example in mail templates.
 extensions:
     link: Contributte\Application\DI\LinkGeneratorExtension
 ```
+
+## UI
+
+### Presenter
+
+Extending `BasePresenter` you can use these methods:
+
+| Methods | Return | Description |
+|---------|--------|-------------|
+| `isModuleCurrent($module)` | `boolean` | Is current presenter in given module? |
+| `getModuleName()` | `string` | Get current presenter module's name. |
+
+### Control
+
+- NullControl - displays nothing
+
+### Component
+
+- NullComponent - displays nothing
 
 ## FlyResponse
 
