@@ -13,12 +13,12 @@
   ],
   "require": {
     "php": ">= 5.6",
-    "nette/application": "^2.4.3"
+    "nette/application": "~2.4.10"
   },
   "require-dev": {
     "ninjify/qa": "^0.4.0",
-    "ninjify/nunjuck": "^0.1.4",
-    "nette/di": "^2.4.9"
+    "ninjify/nunjuck": "^0.2.0",
+    "nette/di": "~2.4.10"
   },
   "suggest": {
     "nette/di": "to use LinkGeneratorExtesion[CompilerExtension]"
@@ -34,10 +34,24 @@
       "codesniffer src tests"
     ],
     "tester": [
-      "tester -s -p php --colors 1 -c tests/php-unix.ini tests/cases"
+      "tester -s -p php --colors 1 -C tests/cases"
     ],
-    "tester-coverage": [
-      "tester -s -p php --colors 1 -c tests/php-unix.ini -d extension=xdebug.so --coverage ./coverage.xml --coverage-src ./src tests/cases"
+    "coverage": [
+      "tester -s -p php --colors 1 -C -d extension=xdebug.so --coverage ./coverage.xml --coverage-src ./src tests/cases"
+    ],
+    "phpstan-install": [
+      "mkdir -p temp/phpstan",
+      "composer require -d temp/phpstan phpstan/phpstan:0.8.5",
+      "composer require -d temp/phpstan phpstan/phpstan-nette:0.8.3"
+    ],
+    "phpstan": [
+      "temp/phpstan/vendor/bin/phpstan analyse -l 1 -c phpstan.neon src"
     ]
+  },
+  "prefer-stable": true,
+  "extra": {
+    "branch-alias": {
+      "dev-develop": "0.2.x-dev"
+    }
   }
 }
