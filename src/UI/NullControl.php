@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\UI;
 
@@ -15,7 +15,7 @@ class NullControl extends Control
 	 *
 	 * @return void
 	 */
-	public function render()
+	public function render(): void
 	{
 		// Nothing..
 	}

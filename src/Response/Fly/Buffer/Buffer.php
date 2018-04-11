@@ -1,32 +1,32 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\Response\Fly\Buffer;
 
 interface Buffer
 {
 
-	const BLOCK = 8196;
+	public const BLOCK = 8196;
 
 	/**
 	 * @param mixed $data
 	 * @return void
 	 */
-	public function write($data);
+	public function write($data): void;
 
 	/**
 	 * @param int $size
 	 * @return mixed
 	 */
-	public function read($size);
+	public function read(int $size);
 
 	/**
 	 * @return bool
 	 */
-	public function eof();
+	public function eof(): bool;
 
 	/**
-	 * @return bool
+	 * @return int
 	 */
-	public function close();
+	public function close(): int;
 
 }

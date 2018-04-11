@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\DI;
 
@@ -12,12 +12,7 @@ use Nette\DI\Statement;
 class LinkGeneratorExtension extends CompilerExtension
 {
 
-	/**
-	 * Register services
-	 *
-	 * @return void
-	 */
-	public function loadConfiguration()
+	public function loadConfiguration(): void
 	{
 		$builder = $this->getContainerBuilder();
 

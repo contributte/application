@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <ruleset name="Contributte">
-    <!-- Extending ruleset -->
-    <rule ref="vendor/ninjify/coding-standard/ruleset.xml"/>
 
-    <!-- Project rules -->
+    <!-- Extending rulesets -->
+    <rule ref="./vendor/ninjify/coding-standard/ruleset.xml"/>
+
+    <!-- Custom rules -->
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
             <property name="rootNamespaces" type="array" value="
@@ -12,11 +13,63 @@
             "/>
         </properties>
     </rule>
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <properties>
+            <property name="indent" value="4"/>
+            <property name="tabIndent" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
+    <rule ref="Generic.PHP.LowerCaseConstant"/>
 
-    <rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition">
-        <exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition.assignmentInCondition"/>
+    <!-- Add excluded sniffs from Ninjify -->
+    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment"/>
+
+    <!-- Excluding Ninjify -->
+    <rule ref="Generic.PHP.UpperCaseConstant">
+        <exclude name="Generic.PHP.UpperCaseConstant"/>
+    </rule>
+
+    <!-- Excluding Slevomat -->
+    <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions">
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants.NonFullyQualified">
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants.NonFullyQualified"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming">
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming">
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.DisallowOneLinePropertyDocComment.OneLinePropertyComment">
+        <exclude name="SlevomatCodingStandard.Commenting.DisallowOneLinePropertyDocComment.OneLinePropertyComment"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit">
+        <exclude name="SlevomatCodingStandard.ControlStructures.EarlyExit"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName">
+        <exclude-pattern>/src/Response/CSVResponse.php</exclude-pattern>
+    </rule>
+
+    <!-- Excluding Generic -->
+    <rule ref="Generic.Commenting.DocComment.ParamNotFirst">
+        <exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
+    </rule>
+    <rule ref="Generic.CodeAnalysis.EmptyStatement.DetectedCatch">
+        <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch"/>
+    </rule>
+
+    <!-- Excluding Squiz -->
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+        <exclude name="Squiz.Commenting.FunctionComment.WrongStyle"/>
+        <exclude name="Squiz.Commenting.FunctionComment.MissingReturn"/>
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
     </rule>
 
     <!-- Exclude folders -->
     <exclude-pattern>/tests/tmp</exclude-pattern>
+
 </ruleset>

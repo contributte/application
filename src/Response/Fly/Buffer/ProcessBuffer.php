@@ -1,8 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\Response\Fly\Buffer;
 
-use Exception;
+use RuntimeException;
 
 class ProcessBuffer implements Buffer
 {
@@ -10,11 +10,7 @@ class ProcessBuffer implements Buffer
 	/** @var resource */
 	private $pointer;
 
-	/**
-	 * @param string $command
-	 * @param string $mode
-	 */
-	public function __construct($command, $mode = 'r')
+	public function __construct(string $command, string $mode = 'r')
 	{
 		$this->pointer = popen($command, $mode);
 	}
@@ -29,40 +25,32 @@ class ProcessBuffer implements Buffer
 
 	/**
 	 * @param mixed $data
-	 * @return void
 	 */
-	public function write($data)
+	public function write($data): void
 	{
-		throw new Exception('Not implemented...');
+		throw new RuntimeException('Not implemented...');
 	}
 
 	/**
-	 * @param int $size
 	 * @return mixed
 	 */
-	public function read($size)
+	public function read(int $size)
 	{
 		return fread($this->pointer, $size);
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function eof()
+	public function eof(): bool
 	{
 		return feof($this->pointer);
 	}
 
-	/**
-	 * @return int
-	 */
-	public function close()
+	public function close(): int
 	{
 		if (isset($this->pointer) && $this->pointer) {
 			$res = fclose($this->pointer);
 			unset($this->pointer);
 
-			return $res;
+			return (int) $res;
 		}
 
 		return 0;

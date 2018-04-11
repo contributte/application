@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\Response\Fly;
 
@@ -13,20 +13,12 @@ class FlyResponse implements ApplicationResponse
 	/** @var Adapter */
 	protected $adapter;
 
-	/**
-	 * @param Adapter $adapter
-	 */
 	public function __construct(Adapter $adapter)
 	{
 		$this->adapter = $adapter;
 	}
 
-	/**
-	 * @param IRequest $request
-	 * @param IResponse $response
-	 * @return void
-	 */
-	public function send(IRequest $request, IResponse $response)
+	public function send(IRequest $request, IResponse $response): void
 	{
 		$this->adapter->send($request, $response);
 	}

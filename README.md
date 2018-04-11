@@ -26,7 +26,8 @@ composer require contributte/application
 
 | State       | Version | Branch   | PHP      |
 |-------------|---------|----------|----------|
-| development | `^0.3`  | `master` | `>= 5.6` |
+| development | `^0.4`  | `master` | `>= 7.1` |
+| stable      | `^0.3`  | `master` | `>= 7.1` |
 | stable      | `^0.2`  | `master` | `>= 5.6` |
 
 ## Overview
@@ -36,7 +37,12 @@ composer require contributte/application
     - [Presenter](https://github.com/contributte/application/blob/master/.docs/README.md#presenter)
     - [Control](https://github.com/contributte/application/blob/master/.docs/README.md#control)
     - [Component](https://github.com/contributte/application/blob/master/.docs/README.md#component)
-- [FlyResponse - send file/buffer on-the-fly](https://github.com/contributte/application/blob/master/.docs/README.md#flyresponse)
+- [Responses](https://github.com/contributte/application/blob/master/.docs/README.md#responses)
+    - [CSVResponse](https://github.com/contributte/application/blob/master/.docs/README.md#csvresponse)
+    - [ImageResponse](https://github.com/contributte/application/blob/master/.docs/README.md#imageresponse)
+    - [JsonPrettyResponse](https://github.com/contributte/application/blob/master/.docs/README.md#psr7streamresponse)
+    - [PSR7StreamResponse](https://github.com/contributte/application/blob/master/.docs/README.md#flyresponse)
+    - [FlyResponse - send file/buffer on-the-fly](https://github.com/contributte/application/blob/master/.docs/README.md#flyresponse)
 
 ## Maintainers
 
@@ -49,6 +55,13 @@ composer require contributte/application
         </a>
         </br>
         <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/paveljanda">
+            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/1488874?v=3&s=150">
+        </a>
+        </br>
+        <a href="https://github.com/paveljanda">Pavel Janda</a>
       </td>
     </tr>
   <tbody>

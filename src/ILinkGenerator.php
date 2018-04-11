@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application;
-
-use Nette\Application\UI\InvalidLinkException;
 
 /**
  * @author Milan Felix Sulc <sulcmil@gmail.com>
@@ -12,9 +10,10 @@ interface ILinkGenerator
 
 	/**
 	 * @param string $dest in format "[[[module:]presenter:]action] [#fragment]"
-	 * @param array $params
+	 * @param mixed[] $params
 	 * @return string
-	 * @throws InvalidLinkException
+	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
 	 */
 	public function link($dest, array $params = []);
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\Response\Fly\Adapter;
 
@@ -18,24 +18,14 @@ class ProcessAdapter implements Adapter
 	/** @var int */
 	private $buffersize;
 
-	/**
-	 * @param string $command
-	 * @param string $mode
-	 * @param int $buffersize
-	 */
-	public function __construct($command, $mode = 'r', $buffersize = 8192)
+	public function __construct(string $command, string $mode = 'r', int $buffersize = 8192)
 	{
 		$this->command = $command;
 		$this->mode = $mode;
 		$this->buffersize = $buffersize;
 	}
 
-	/**
-	 * @param IRequest $request
-	 * @param IResponse $response
-	 * @return void
-	 */
-	public function send(IRequest $request, IResponse $response)
+	public function send(IRequest $request, IResponse $response): void
 	{
 		// Open file Buffer
 		$b = new ProcessBuffer($this->command, $this->mode);

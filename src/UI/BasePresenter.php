@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\UI;
 
@@ -15,7 +15,7 @@ abstract class BasePresenter extends Presenter
 	 *
 	 * @return string
 	 */
-	public function getModuleName()
+	public function getModuleName(): string
 	{
 		$parts = explode(':', $this->getName());
 
@@ -28,9 +28,9 @@ abstract class BasePresenter extends Presenter
 	 * @param string $module Module name
 	 * @return bool
 	 */
-	public function isModuleCurrent($module)
+	public function isModuleCurrent(string $module): bool
 	{
-		return strpos($this->getAction(TRUE), $module) !== FALSE;
+		return strpos($this->getAction(true), $module) !== false;
 	}
 
 }

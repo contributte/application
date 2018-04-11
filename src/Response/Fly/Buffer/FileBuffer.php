@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\Response\Fly\Buffer;
 
@@ -8,11 +8,7 @@ class FileBuffer implements Buffer
 	/** @var resource */
 	private $pointer;
 
-	/**
-	 * @param string $file
-	 * @param string $mode
-	 */
-	public function __construct($file, $mode)
+	public function __construct(string $file, string $mode)
 	{
 		$this->pointer = fopen($file, $mode);
 	}
@@ -27,40 +23,32 @@ class FileBuffer implements Buffer
 
 	/**
 	 * @param mixed $data
-	 * @return void
 	 */
-	public function write($data)
+	public function write($data): void
 	{
 		fwrite($this->pointer, $data);
 	}
 
 	/**
-	 * @param int $size
 	 * @return mixed
 	 */
-	public function read($size)
+	public function read(int $size)
 	{
 		return fread($this->pointer, $size);
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function eof()
+	public function eof(): bool
 	{
 		return feof($this->pointer);
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function close()
+	public function close(): int
 	{
 		if (isset($this->pointer) && $this->pointer) {
 			$res = fclose($this->pointer);
 			unset($this->pointer);
 
-			return $res;
+			return (int) $res;
 		}
 
 		return 0;
