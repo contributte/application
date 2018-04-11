@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * Test: DI\LinkGeneratorExtension
@@ -17,9 +17,9 @@ use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function () {
-	$loader = new ContainerLoader(TEMP_DIR, TRUE);
-	$class = $loader->load(function (Compiler $compiler) {
+test(function (): void {
+	$loader = new ContainerLoader(TEMP_DIR, true);
+	$class = $loader->load(function (Compiler $compiler): void {
 		$compiler->addExtension('link', new LinkGeneratorExtension());
 		$compiler->addExtension('application', new ApplicationExtension());
 		$compiler->addExtension('routing', new RoutingExtension());
@@ -27,7 +27,7 @@ test(function () {
 	}, 1);
 
 	/** @var Container $container */
-	$container = new $class;
+	$container = new $class();
 
 	Assert::type(MemoryLinkGenerator::class, $container->getService('link.generator'));
 	Assert::type(MemoryLinkGenerator::class, $container->getByType(ILinkGenerator::class));

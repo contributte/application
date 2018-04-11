@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application;
 
@@ -8,15 +8,15 @@ namespace Contributte\Application;
 class MemoryLinkGenerator extends LinkGenerator
 {
 
-	/** @var array */
+	/** @var string[] */
 	private $cache = [];
 
 	/**
 	 * @param string $dest
-	 * @param array $params
-	 * @return string
+	 * @param mixed[] $params
+	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
-	public function link($dest, array $params = [])
+	public function link($dest, array $params = []): string
 	{
 		// Generates cache key
 		$cacheKey = md5(serialize([$dest, $params]));

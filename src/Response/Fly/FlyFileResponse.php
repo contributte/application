@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\Response\Fly;
 
@@ -13,54 +13,33 @@ class FlyFileResponse extends FlyResponse
 	private $contentType = 'application/octet-stream';
 
 	/** @var bool */
-	private $forceDownload = TRUE;
+	private $forceDownload = true;
 
 	/** @var string */
 	private $filename;
 
-	/**
-	 * @param Adapter $adapter
-	 * @param string $filename
-	 */
-	public function __construct(Adapter $adapter, $filename)
+	public function __construct(Adapter $adapter, string $filename)
 	{
 		parent::__construct($adapter);
 		$this->filename = $filename;
 	}
 
-	/**
-	 * @param string $contentType
-	 * @return void
-	 */
-	public function setContentType($contentType)
+	public function setContentType(string $contentType): void
 	{
 		$this->contentType = $contentType;
 	}
 
-	/**
-	 * @param string $filename
-	 * @return void
-	 */
-	public function setFilename($filename)
+	public function setFilename(string $filename): void
 	{
 		$this->filename = $filename;
 	}
 
-	/**
-	 * @param boolean $force
-	 * @return void
-	 */
-	public function setForceDownload($force = TRUE)
+	public function setForceDownload(bool $force = true): void
 	{
 		$this->forceDownload = $force;
 	}
 
-	/**
-	 * @param IRequest $request
-	 * @param IResponse $response
-	 * @return void
-	 */
-	public function send(IRequest $request, IResponse $response)
+	public function send(IRequest $request, IResponse $response): void
 	{
 		$response->setContentType($this->contentType);
 		$response->setHeader(

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\Response\Fly\Adapter;
 
@@ -12,20 +12,12 @@ class StdoutAdapter implements Adapter
 	/** @var callable */
 	private $callback;
 
-	/**
-	 * @param callable $callback
-	 */
 	public function __construct(callable $callback)
 	{
 		$this->callback = $callback;
 	}
 
-	/**
-	 * @param IRequest $request
-	 * @param IResponse $response
-	 * @return void
-	 */
-	public function send(IRequest $request, IResponse $response)
+	public function send(IRequest $request, IResponse $response): void
 	{
 		// Open file pointer
 		$b = new FileBuffer('php://output', 'w');

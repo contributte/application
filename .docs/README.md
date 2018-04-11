@@ -7,7 +7,12 @@
     - [Presenter](#presenter)
     - [Control](#control)
     - [Component](#component)
-- [FlyResponse - send file/buffer on-the-fly](#flyresponse)
+- [Responses](responses)
+    - [CSVResponse](csvresponse)
+    - [ImageResponse](imageresponse)
+    - [JsonPrettyResponse](psr7streamresponse)
+    - [PSR7StreamResponse](flyresponse)
+    - [FlyResponse - send file/buffer on-the-fly](flyresponse)
 
 ## Link Generator
 
@@ -38,19 +43,56 @@ Extending `BasePresenter` you can use these methods:
 
 - NullComponent - displays nothing
 
-## FlyResponse
+## Responses
+
+- CSVResponse
+- ImageResponse
+- JsonPrettyResponse
+- PSR7StreamResponse
+- FlyResponse
+
+### CSVResponse
+
+```php
+$presenter->sendResponse(new CSVResponse($data));
+
+# Define own filename
+$presenter->sendResponse(new CSVResponse($data, 'export-2018.csv');
+
+# Set delimiter and include BOM
+$presenter->sendResponse(new CSVResponse($data, 'export.csv', 'utf-8', '|', TRUE));
+```
+### ImageResponse
+
+```php
+$presenter->sendResponse(new ImageResponse($image));
+
+# String filepath
+$presenter->sendResponse(new ImageResponse('/path/to/file.png'));
+```
+
+### JsonPrettyResponse
+
+```php
+$presenter->sendResponse(new JsonPrettyResponse($json, 'application/json));
+```
+
+### PSR7StreamResponse
+
+```php
+$presenter->sendResponse(new PSR7StreamResponse($stream, 'invoice.pdf', 'application/octet-stream'));
+```
 
 ### FlyResponse
 
-For common purpose and your custom solutions.
+There are 2 types of fly response:
 
-### FlyFileResponse
+- **FlyResponse** - For common purpose and your custom solutions.
+- **FlyFileResponse** - Special response for handling files on-the-fly.
 
-Special response for handling files on-the-fly.
+### Adapters
 
-## Adapters
-
-### ProcessAdapter
+#### ProcessAdapter
 
 Execute command over [popen](http://php.net/manual/en/function.popen.php).
 
@@ -65,7 +107,7 @@ $response = new FlyFileResponse($adapter, 'folder.tgz');
 $this->sendResponse($response);
 ```
 
-### StdoutAdapter
+#### StdoutAdapter
 
 Write to `php://output`.
 
@@ -89,7 +131,7 @@ $response = new FlyFileResponse($adapter, 'my.data');
 $this->sendResponse($response);
 ```
 
-### CallbackAdapter
+#### CallbackAdapter
 
 ```php
 use Contributte\Application\Response\Fly\Adapter\CallbackAdapter;
@@ -113,7 +155,7 @@ $response = new FlyFileResponse($adapter, 'my.data');
 $this->sendResponse($response);
 ```
 
-## Model
+### Model
 
 ```php
 final class BigOperationHandler

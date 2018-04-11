@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Application\UI\Presenter;
 
@@ -13,7 +13,7 @@ trait StructuredTemplates
 	/**
 	 * @return string[]
 	 */
-	public function formatLayoutTemplateFiles()
+	public function formatLayoutTemplateFiles(): array
 	{
 		$presenterReflection = new ComponentReflection(get_called_class());
 		$presenterDir = dirname($presenterReflection->getFileName());
@@ -30,7 +30,7 @@ trait StructuredTemplates
 	/**
 	 * @return string[]
 	 */
-	public function formatTemplateFiles()
+	public function formatTemplateFiles(): array
 	{
 		$presenterReflection = new ComponentReflection(get_called_class());
 		$presenterDir = dirname($presenterReflection->getFileName());
