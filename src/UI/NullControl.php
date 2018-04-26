@@ -12,8 +12,6 @@ class NullControl extends Control
 
 	/**
 	 * Render nothing
-	 *
-	 * @return void
 	 */
 	public function render(): void
 	{

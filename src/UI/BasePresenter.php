@@ -12,8 +12,6 @@ abstract class BasePresenter extends Presenter
 
 	/**
 	 * Gets module name
-	 *
-	 * @return string
 	 */
 	public function getModuleName(): string
 	{
@@ -26,7 +24,6 @@ abstract class BasePresenter extends Presenter
 	 * Is current module active?
 	 *
 	 * @param string $module Module name
-	 * @return bool
 	 */
 	public function isModuleCurrent(string $module): bool
 	{

@@ -16,10 +16,10 @@
     "nette/application": "~2.4.11"
   },
   "require-dev": {
-    "ninjify/qa": "^0.7.1",
+    "ninjify/qa": "^0.8.0",
     "ninjify/nunjuck": "^0.2.0",
     "nette/di": "~2.4.11",
-    "nette/http": "~2.4.7",
+    "nette/http": "~2.4.8",
     "psr/http-message": "~1.0.1"
   },
   "suggest": {
@@ -30,6 +30,8 @@
       "Contributte\\Application\\": "src"
     }
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "scripts": {
     "qa": [
       "linter src tests",
