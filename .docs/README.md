@@ -7,13 +7,13 @@
     - [Presenter](#presenter)
     - [Control](#control)
     - [Component](#component)
-- [Responses](responses)
-    - [CSVResponse](csvresponse)
-    - [ImageResponse](imageresponse)
-    - [JsonPrettyResponse](psr7streamresponse)
-    - [PSR7StreamResponse](flyresponse)
-    - [FlyResponse - send file/buffer on-the-fly](flyresponse)
-    - [XmlResponse](xmlresponse)
+- [Responses](#responses)
+    - [CSVResponse](#csvresponse)
+    - [ImageResponse](#imageresponse)
+    - [JsonPrettyResponse](#psr7streamresponse)
+    - [PSR7StreamResponse](#flyresponse)
+    - [FlyResponse - send file/buffer on-the-fly](#flyresponse)
+    - [XmlResponse](#xmlresponse)
 
 ## Link Generator
 
