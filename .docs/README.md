@@ -13,6 +13,7 @@
     - [JsonPrettyResponse](psr7streamresponse)
     - [PSR7StreamResponse](flyresponse)
     - [FlyResponse - send file/buffer on-the-fly](flyresponse)
+    - [XmlResponse](xmlresponse)
 
 ## Link Generator
 
@@ -50,6 +51,7 @@ Extending `BasePresenter` you can use these methods:
 - JsonPrettyResponse
 - PSR7StreamResponse
 - FlyResponse
+- XmlResponse
 
 ### CSVResponse
 
@@ -89,6 +91,12 @@ There are 2 types of fly response:
 
 - **FlyResponse** - For common purpose and your custom solutions.
 - **FlyFileResponse** - Special response for handling files on-the-fly.
+
+### XmlResponse
+
+```php
+$presenter->sendResponse(new XmlResponse($xml));
+```
 
 ### Adapters
 

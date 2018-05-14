@@ -43,6 +43,7 @@ composer require contributte/application
     - [JsonPrettyResponse](https://github.com/contributte/application/blob/master/.docs/README.md#psr7streamresponse)
     - [PSR7StreamResponse](https://github.com/contributte/application/blob/master/.docs/README.md#flyresponse)
     - [FlyResponse - send file/buffer on-the-fly](https://github.com/contributte/application/blob/master/.docs/README.md#flyresponse)
+    - [XmlResponse](https://github.com/contributte/application/blob/master/.docs/README.md#xmlresponse)
 
 ## Maintainers
 
