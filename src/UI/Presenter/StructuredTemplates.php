@@ -15,16 +15,22 @@ trait StructuredTemplates
 	 */
 	public function formatLayoutTemplateFiles(): array
 	{
-		$presenterReflection = new ReflectionClass(get_called_class());
-		$presenterDir = dirname($presenterReflection->getFileName());
+		$called = get_called_class();
+		$classes = [$called] + class_parents($called);
+		$list = [];
 
-		$parentPresenterReflection = new ReflectionClass(self::class);
-		$parentPresenterDir = dirname($parentPresenterReflection->getFileName());
+		foreach ($classes as $class) {
+			// Skip Nette classes
+			if (Strings::startsWith($class, 'Nette\\')) continue;
 
-		return [
-			$presenterDir . '/templates/@layout.latte',
-			$parentPresenterDir . '/templates/@layout.latte',
-		];
+			$presenterReflection = new ReflectionClass($class);
+			$presenterDir = dirname($presenterReflection->getFileName());
+			$list[] = $presenterDir . '/templates/@layout.latte';
+		}
+
+		$list = array_unique($list);
+
+		return $list;
 	}
 
 	/**
