@@ -5,6 +5,7 @@
 - [LinkGenerator (LinkGeneratorExtesion)](#link-generator)
 - [UI](#ui)
     - [Presenter](#presenter)
+        - [StructuredTemplates](#structuredtemplates)
     - [Control](#control)
     - [Component](#component)
 - [Responses](#responses)
@@ -35,6 +36,26 @@ Extending `BasePresenter` you can use these methods:
 |---------|--------|-------------|
 | `isModuleCurrent($module)` | `boolean` | Is current presenter in given module? |
 | `getModuleName()` | `string` | Get current presenter module's name. |
+
+#### Structured Templates
+
+Trait which modifies where are presenter templates located.
+
+- Views
+    - `%presenterDir%/templates/%view%.latte`
+- Layouts
+    - `%presenterDir%/templates/@layout.latte`
+    - layouts of parent presenters are also looked for
+
+```php
+use Contributte\Application\UI\Presenter\StructuredTemplates;
+use Nette\Application\UI\Presenter;
+
+class YourPresenter extends Presenter
+{
+    use StructuredTemplates;
+}
+```
 
 ### Control
 
