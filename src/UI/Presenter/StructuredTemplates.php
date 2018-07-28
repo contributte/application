@@ -2,7 +2,7 @@
 
 namespace Contributte\Application\UI\Presenter;
 
-use Nette\Application\UI\ComponentReflection;
+use ReflectionClass;
 
 /**
  * Use in Presenter
@@ -15,10 +15,10 @@ trait StructuredTemplates
 	 */
 	public function formatLayoutTemplateFiles(): array
 	{
-		$presenterReflection = new ComponentReflection(get_called_class());
+		$presenterReflection = new ReflectionClass(get_called_class());
 		$presenterDir = dirname($presenterReflection->getFileName());
 
-		$parentPresenterReflection = new ComponentReflection(self::class);
+		$parentPresenterReflection = new ReflectionClass(self::class);
 		$parentPresenterDir = dirname($parentPresenterReflection->getFileName());
 
 		return [
@@ -32,7 +32,7 @@ trait StructuredTemplates
 	 */
 	public function formatTemplateFiles(): array
 	{
-		$presenterReflection = new ComponentReflection(get_called_class());
+		$presenterReflection = new ReflectionClass(get_called_class());
 		$presenterDir = dirname($presenterReflection->getFileName());
 
 		return [
