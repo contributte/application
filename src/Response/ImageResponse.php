@@ -16,13 +16,13 @@ class ImageResponse implements IResponse
 
 	/** @var Image|string */
 	private $image;
-	
+
 	/** @var int */
 	private $type;
 
 	/** @var int */
 	private $quality;
-	
+
 	/**
 	 * @param Image|string $image
 	 * @param int $type
