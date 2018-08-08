@@ -20,7 +20,7 @@ class ImageResponse implements IResponse
 	/** @var int */
 	private $type;
 
-	/** @var int */
+	/** @var int|null */
 	private $quality;
 
 	/**
