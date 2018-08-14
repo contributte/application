@@ -5,7 +5,7 @@
 - [LinkGenerator (LinkGeneratorExtesion)](#link-generator)
 - [UI](#ui)
     - [Presenter](#presenter)
-        - [StructuredTemplates](#structuredtemplates)
+        - [StructuredTemplates](#structured-templates)
     - [Control](#control)
     - [Component](#component)
 - [Responses](#responses)
