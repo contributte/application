@@ -18,8 +18,8 @@
 
 ## Link Generator
 
-There is a tiny extension which provides cachable LinkGenerator. LinkGenerator is a external service for creating 
-URL addreses / links out of presenter scope. For example in mail templates.
+A tiny extension which provides cacheable LinkGenerator. LinkGenerator is an external service for creating 
+URL addresses / links out of presenter scope, e.g. in mail templates.
 
 ```yaml
 extensions:
@@ -30,16 +30,16 @@ extensions:
 
 ### Presenter
 
-Extending `BasePresenter` you can use these methods:
+By extending the `BasePresenter` you can use these methods:
 
 | Methods | Return | Description |
 |---------|--------|-------------|
-| `isModuleCurrent($module)` | `boolean` | Is current presenter in given module? |
-| `getModuleName()` | `string` | Get current presenter module's name. |
+| `isModuleCurrent($module)` | `boolean` | Is the current presenter in a given module? |
+| `getModuleName()` | `string` | Get current presenter's module name. |
 
 #### Structured Templates
 
-Trait which modifies where are presenter templates located.
+A trait which modifies where the presenter templates are loaded from.
 
 - Views
     - `%presenterDir%/templates/%view%.latte`
@@ -110,7 +110,7 @@ $presenter->sendResponse(new PSR7StreamResponse($stream, 'invoice.pdf', 'applica
 
 There are 2 types of fly response:
 
-- **FlyResponse** - For common purpose and your custom solutions.
+- **FlyResponse** - General purpose fly response.
 - **FlyFileResponse** - Special response for handling files on-the-fly.
 
 ### XmlResponse
@@ -123,13 +123,13 @@ $presenter->sendResponse(new XmlResponse($xml));
 
 #### ProcessAdapter
 
-Execute command over [popen](http://php.net/manual/en/function.popen.php).
+Execute a command over [popen](http://php.net/manual/en/function.popen.php).
 
 ```php
 use Contributte\Application\Response\Fly\Adapter\ProcessAdapter;
 use Contributte\Application\Response\Fly\FlyFileResponse;
 
-// Compress current folder and send to response
+// Compress the current folder and send it to a response
 $adapter = new ProcessAdapter('tar cf - ./ | gzip -c -f');
 $response = new FlyFileResponse($adapter, 'folder.tgz');
 
