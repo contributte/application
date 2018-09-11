@@ -2,6 +2,7 @@
 
 namespace Contributte\Application\UI\Presenter;
 
+use Nette\Utils\Strings;
 use ReflectionClass;
 
 /**
