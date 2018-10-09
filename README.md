@@ -32,7 +32,6 @@ composer require contributte/application
 
 ## Overview
 
-- [LinkGenerator (LinkGeneratorExtension)](https://github.com/contributte/application/blob/master/.docs/README.md#link-generator)
 - [UI](https://github.com/contributte/application/blob/master/.docs/README.md#ui)
     - [Presenter](https://github.com/contributte/application/blob/master/.docs/README.md#presenter)
         - [StructuredTemplates](https://github.com/contributte/application/blob/master/.docs/README.md#structured-templates)
