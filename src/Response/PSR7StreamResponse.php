@@ -80,7 +80,7 @@ final class PSR7StreamResponse implements IResponse
 		$httpResponse->setHeader('Content-Disposition', 'attachment; filename="' . $this->name . '";');
 
 		while (!$this->stream->eof()) {
-			echo $this->stream->read(4e6);
+			echo $this->stream->read((int) 4e6);
 		}
 
 		$this->stream->close();
