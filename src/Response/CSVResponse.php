@@ -5,6 +5,7 @@ namespace Contributte\Application\Response;
 use Nette\Application\IResponse;
 use Nette\Http\IRequest as IHttpRequest;
 use Nette\Http\IResponse as IHttpResponse;
+use Tracy\Debugger;
 
 /**
  * CSV file download response
@@ -68,8 +69,8 @@ class CSVResponse implements IResponse
 		/**
 		 * Disable tracy bar
 		 */
-		if (class_exists('\Tracy\Debugger') && property_exists('\Tracy\Debugger', 'productionMode')) {
-			\Tracy\Debugger::$productionMode = true;
+		if (class_exists(Debugger::class)) {
+			Debugger::$productionMode = true;
 		}
 
 		/**
