@@ -15,7 +15,7 @@ abstract class BasePresenter extends Presenter
 	 */
 	public function getModuleName(): string
 	{
-		$parts = explode(':', $this->getName());
+		$parts = explode(':', (string) $this->getName());
 
 		return current($parts);
 	}
