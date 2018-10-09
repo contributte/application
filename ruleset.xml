@@ -15,10 +15,6 @@
         </properties>
     </rule>
 
-    <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName">
-        <exclude-pattern>/src/Response/CSVResponse.php</exclude-pattern>
-    </rule>
-
     <!--Exclude folders -->
     <exclude-pattern>/tests/tmp</exclude-pattern>
 </ruleset>
