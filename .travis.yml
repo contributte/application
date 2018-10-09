@@ -36,6 +36,7 @@ jobs:
         - composer run-script phpstan
 
     - stage: Test Coverage
+      if: branch = master AND TRAVIS_EVENT_TYPE == push
       php: 7.1
       script:
         - composer run-script coverage
