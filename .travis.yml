@@ -29,6 +29,12 @@ jobs:
       script:
         - composer run-script qa
 
+    - stage: Phpstan
+      php: 7.1
+      script:
+        - composer run-script phpstan-install
+        - composer run-script phpstan
+
     - stage: Test Coverage
       php: 7.1
       script:
@@ -36,12 +42,6 @@ jobs:
       after_script:
         - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
         - php php-coveralls.phar --verbose --config tests/.coveralls.yml
-
-    - stage: Phpstan
-      php: 7.1
-      script:
-        - composer run-script phpstan-install
-        - composer run-script phpstan
 
   allow_failures:
     - stage: Test Coverage
