@@ -44,7 +44,7 @@ class FileBuffer implements Buffer
 
 	public function close(): int
 	{
-		if (isset($this->pointer) && $this->pointer) {
+		if (isset($this->pointer) && is_resource($this->pointer)) {
 			$res = fclose($this->pointer);
 			unset($this->pointer);
 
