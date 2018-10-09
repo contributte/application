@@ -16,7 +16,7 @@ trait StructuredTemplates
 	 */
 	public function formatLayoutTemplateFiles(): array
 	{
-		$called = get_called_class();
+		$called = static::class;
 		$classes = [$called] + class_parents($called);
 		$list = [];
 
@@ -39,7 +39,7 @@ trait StructuredTemplates
 	 */
 	public function formatTemplateFiles(): array
 	{
-		$presenterReflection = new ReflectionClass(get_called_class());
+		$presenterReflection = new ReflectionClass(static::class);
 		$presenterDir = dirname($presenterReflection->getFileName());
 
 		return [
