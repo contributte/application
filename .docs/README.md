@@ -2,7 +2,6 @@
 
 ## Content
 
-- [LinkGenerator (LinkGeneratorExtesion)](#link-generator)
 - [UI](#ui)
     - [Presenter](#presenter)
         - [StructuredTemplates](#structured-templates)
@@ -15,16 +14,6 @@
     - [PSR7StreamResponse](#flyresponse)
     - [FlyResponse - send file/buffer on-the-fly](#flyresponse)
     - [XmlResponse](#xmlresponse)
-
-## Link Generator
-
-A tiny extension which provides cacheable LinkGenerator. LinkGenerator is an external service for creating 
-URL addresses / links out of presenter scope, e.g. in mail templates.
-
-```yaml
-extensions:
-    link: Contributte\Application\DI\LinkGeneratorExtension
-```
 
 ## UI
 
