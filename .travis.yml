@@ -2,9 +2,7 @@ language: php
 php:
   - 7.1
   - 7.2
-
-# Don't build twice for PR (PR and push builds)
-if: type != pull_request
+  - 7.3
 
 before_install:
 # Turn off XDebug
@@ -15,8 +13,12 @@ install:
   - travis_retry composer install --no-progress --prefer-dist
 
 script:
-  # Nette/Tester
-  - composer run-script tester
+  # Tests
+  - composer run-script tests
+
+after_failure:
+  # Print *.actual content
+  - for i in $(find tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
 
 jobs:
   include:
@@ -25,7 +27,7 @@ jobs:
       install:
         - travis_retry composer update --no-progress --prefer-dist --prefer-lowest
       script:
-        - composer run-script tester
+        - composer run-script tests
 
     - stage: Quality Assurance
       php: 7.1
@@ -47,12 +49,14 @@ jobs:
         - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
         - php php-coveralls.phar --verbose --config tests/.coveralls.yml
 
+    - stage: Outdated Dependencies
+      if: branch = master AND type = cron
+      php: 7.1
+      script:
+        - composer outdated --direct --strict
+
   allow_failures:
     - stage: Test Coverage
-
-after_failure:
-  # Print *.actual content
-  - for i in $(find tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
 
 sudo: false
 
