@@ -2,9 +2,7 @@ language: php
 php:
   - 7.1
   - 7.2
-
-# Don't build twice for PR (PR and push builds)
-if: type != pull_request
+  - 7.3
 
 before_install:
 # Turn off XDebug
@@ -15,8 +13,18 @@ install:
   - travis_retry composer install --no-progress --prefer-dist
 
 script:
-  # Nette/Tester
-  - composer run-script tester
+  # Check all dependencies at master are up-to-date when running regular builds
+  - |
+    if [[ $TRAVIS_EVENT_TYPE == "cron" && $TRAVIS_BRANCH == "master" ]]; then
+        composer outdated --direct --strict
+    fi
+
+  # Tests
+  - composer run-script tests
+
+after_failure:
+  # Print *.actual content
+  - for i in $(find tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
 
 jobs:
   include:
@@ -25,7 +33,7 @@ jobs:
       install:
         - travis_retry composer update --no-progress --prefer-dist --prefer-lowest
       script:
-        - composer run-script tester
+        - composer run-script tests
 
     - stage: Quality Assurance
       php: 7.1
@@ -49,10 +57,6 @@ jobs:
 
   allow_failures:
     - stage: Test Coverage
-
-after_failure:
-  # Print *.actual content
-  - for i in $(find tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
 
 sudo: false
 

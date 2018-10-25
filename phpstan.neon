@@ -6,4 +6,4 @@ includes:
 
 parameters:
 	ignoreErrors:
-		- '#^Property Contributte\\Application\\Response\\Fly\\Buffer\\FileBuffer\:\:\$pointer \(resource\) does not accept resource\|false\.$#'
+		- '#^Property Contributte\\Application\\Response\\Fly\\Buffer\\(FileBuffer|ProcessBuffer)\:\:\$pointer \(resource\) does not accept resource\|false\.$#'
