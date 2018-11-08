@@ -72,7 +72,7 @@ composer require contributte/application
         <a href="https://github.com/mabar">Marek Bartoš</a>
       </td>
     </tr>
-  <tbody>
+  </tbody>
 </table>
 
 ---
