@@ -14,6 +14,7 @@
     - [PSR7StreamResponse](#flyresponse)
     - [FlyResponse - send file/buffer on-the-fly](#flyresponse)
     - [XmlResponse](#xmlresponse)
+    - [StringResponse](#stringresponse)
 
 ## UI
 
@@ -62,6 +63,7 @@ class YourPresenter extends Presenter
 - PSR7StreamResponse
 - FlyResponse
 - XmlResponse
+- StringResponse
 
 ### CSVResponse
 
@@ -106,6 +108,14 @@ There are 2 types of fly response:
 
 ```php
 $presenter->sendResponse(new XmlResponse($xml));
+```
+### StringResponse
+
+```php
+$response = new StringResponse($pdfString, 'invoice.pdf', 'application/pdf');
+$response->setAttachment(); // browser download the file
+
+$presenter->sendResponse($response);
 ```
 
 ### Adapters
