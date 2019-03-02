@@ -22,7 +22,9 @@ trait StructuredTemplates
 
 		foreach ($classes as $class) {
 			// Skip Nette classes
-			if (Strings::startsWith($class, 'Nette\\')) continue;
+			if (Strings::startsWith($class, 'Nette\\')) {
+				continue;
+			}
 
 			$presenterReflection = new ReflectionClass($class);
 			$presenterDir = dirname($presenterReflection->getFileName());

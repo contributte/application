@@ -9,8 +9,6 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * File download response from PSR7 stream.
- *
- * @author Martin Procházka <juniwalk@outlook.cz>
  */
 final class PSR7StreamResponse implements IResponse
 {

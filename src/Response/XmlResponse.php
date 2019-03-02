@@ -6,9 +6,6 @@ use Nette\Application\Responses\TextResponse;
 use Nette\Http\IRequest;
 use Nette\Http\IResponse;
 
-/**
- * @author Jan Galek <admin@gcore.cz>
- */
 class XmlResponse extends TextResponse
 {
 

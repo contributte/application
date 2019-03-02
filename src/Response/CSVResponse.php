@@ -9,8 +9,6 @@ use Tracy\Debugger;
 
 /**
  * CSV file download response
- *
- * @author Pavel Janda <me@paveljanda.com>
  */
 class CSVResponse implements IResponse
 {
@@ -47,7 +45,6 @@ class CSVResponse implements IResponse
 		array $data,
 		string $name = 'export.csv',
 		string $outputEncoding = 'utf-8',
-		// may be often windows-1250 on windows machines
 		string $delimiter = ';',
 		bool $includeBom = false
 	)
@@ -63,31 +60,20 @@ class CSVResponse implements IResponse
 		$this->includeBom = $includeBom;
 	}
 
-
 	public function send(IHttpRequest $httpRequest, IHttpResponse $httpResponse): void
 	{
-		/**
-		 * Disable tracy bar
-		 */
+		// Disable tracy bar
 		if (class_exists(Debugger::class)) {
 			Debugger::$productionMode = true;
 		}
 
-		/**
-		 * Set Content-Type header
-		 */
+		// Set Content-Type header
 		$httpResponse->setContentType($this->contentType, $this->outputEncoding);
 
-		/**
-		 * Set Content-Disposition header
-		 */
-		$httpResponse->setHeader('Content-Disposition', 'attachment'
-			. '; filename="' . $this->name . '"');
-		/*. '; filename*=' . $this->output_encoding . '\'\'' . rawurlencode($this->name));*/
+		// Set Content-Disposition header
+		$httpResponse->setHeader('Content-Disposition', sprintf('attachment; filename="%s"', $this->name));
 
-		/**
-		 * Set other headers
-		 */
+		// Set other headers
 		foreach ($this->headers as $key => $value) {
 			$httpResponse->setHeader($key, $value);
 		}
@@ -96,12 +82,11 @@ class CSVResponse implements IResponse
 			ob_start();
 		}
 
-		/**
-		 * Output data
-		 */
+		// Output data
 		if ($this->includeBom && strtolower($this->outputEncoding) === 'utf-8') {
 			echo b"\xEF\xBB\xBF";
 		}
+
 		$delimiter = '"' . $this->delimiter . '"';
 
 		foreach ($this->data as $row) {

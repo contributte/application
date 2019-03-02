@@ -9,8 +9,6 @@ use Nette\Utils\Json;
 
 /**
  * Add JSON_PRETTY_PRINT option to Nette\Application\Responses\JsonResponse
- *
- * @author Pavel Janda <me@paveljanda.com>
  */
 class JsonPrettyResponse extends JsonResponse
 {

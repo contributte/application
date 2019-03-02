@@ -4,9 +4,6 @@ namespace Contributte\Application\UI;
 
 use Nette\Application\UI\Presenter;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 abstract class BasePresenter extends Presenter
 {
 

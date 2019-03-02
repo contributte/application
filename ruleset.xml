@@ -2,7 +2,8 @@
 <ruleset name="Contributte">
     <!-- Contributte Coding Standard -->
     <rule ref="./vendor/ninjify/coding-standard/contributte.xml">
-        <exclude name="SlevomatCodingStandard.Commenting.ForbiddenAnnotations.AnnotationForbidden" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireTernaryOperator.TernaryOperatorNotUsed" />
+        <exclude name="SlevomatCodingStandard.PHP.TypeCast" />
     </rule>
 
     <!-- Specific rules -->
