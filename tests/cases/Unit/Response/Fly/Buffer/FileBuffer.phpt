@@ -7,7 +7,7 @@
 use Contributte\Application\Response\Fly\Buffer\FileBuffer;
 use Tester\Assert;
 
-require_once __DIR__ . '/../../../../bootstrap.php';
+require_once __DIR__ . '/../../../../../bootstrap.php';
 
 test(function (): void {
 	$file = TEMP_DIR . '/test1.file' . time();

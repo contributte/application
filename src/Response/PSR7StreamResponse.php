@@ -13,25 +13,13 @@ use Psr\Http\Message\StreamInterface;
 final class PSR7StreamResponse implements IResponse
 {
 
-	/**
-	 * Instance of the response stream.
-	 *
-	 * @var StreamInterface
-	 */
+	/** @var StreamInterface */
 	private $stream;
 
-	/**
-	 * Name of the downloading file.
-	 *
-	 * @var string
-	 */
+	/** @var string */
 	private $name;
 
-	/**
-	 * Content-Type of the contents.
-	 *
-	 * @var string
-	 */
+	/** @var string */
 	private $contentType;
 
 	/**
@@ -73,7 +61,7 @@ final class PSR7StreamResponse implements IResponse
 	public function send(IHttpRequest $httpRequest, IHttpResponse $httpResponse): void
 	{
 		// Set response headers for the file download
-		$httpResponse->setHeader('Content-Length', $this->stream->getSize());
+		$httpResponse->setHeader('Content-Length', (string) $this->stream->getSize());
 		$httpResponse->setHeader('Content-Type', $this->contentType);
 		$httpResponse->setHeader('Content-Disposition', 'attachment; filename="' . $this->name . '";');
 

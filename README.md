@@ -1,8 +1,6 @@
-# Contributte > Application
+# Contributte Application
 
-:sparkles: Extra contribution to [`nette/application`](https://github.com/nette/application).
-
------
+Extra contribution to [`nette/application`](https://github.com/nette/application).
 
 [![Build Status](https://img.shields.io/travis/contributte/application.svg?style=flat-square)](https://travis-ci.org/contributte/application)
 [![Code coverage](https://img.shields.io/coveralls/contributte/application.svg?style=flat-square)](https://coveralls.io/r/contributte/application)
@@ -10,40 +8,36 @@
 [![Downloads this Month](https://img.shields.io/packagist/dm/contributte/application.svg?style=flat-square)](https://packagist.org/packages/contributte/application)
 [![Downloads total](https://img.shields.io/packagist/dt/contributte/application.svg?style=flat-square)](https://packagist.org/packages/contributte/application)
 [![Latest stable](https://img.shields.io/packagist/v/contributte/application.svg?style=flat-square)](https://packagist.org/packages/contributte/application)
-[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://github.com/phpstan/phpstan)
+[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 
 ## Discussion / Help
 
 [![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](http://bit.ly/ctteg)
 
-## Install
+## Documentation
 
-```
-composer require contributte/application
-```
+- [Setup](.docs/README.md#setup)
+- [UI](.docs/README.md#ui)
+    - [Presenter](.docs/README.md#presenter)
+        - [StructuredTemplates](.docs/README.md#structured-templates)
+    - [Control](.docs/README.md#control)
+    - [Component](.docs/README.md#component)
+- [Responses](.docs/README.md#responses)
+    - [CSVResponse](.docs/README.md#csvresponse)
+    - [ImageResponse](.docs/README.md#imageresponse)
+    - [JsonPrettyResponse](.docs/README.md#psr7streamresponse)
+    - [PSR7StreamResponse](.docs/README.md#flyresponse)
+    - [FlyResponse - send file/buffer on-the-fly](.docs/README.md#flyresponse)
+    - [XmlResponse](.docs/README.md#xmlresponse)
 
 ## Versions
 
-| State       | Version | Branch   | PHP      |
-|-------------|---------|----------|----------|
-| development | `^0.4`  | `master` | `>= 7.1` |
-| stable      | `^0.3`  | `master` | `>= 7.1` |
-| stable      | `^0.2`  | `master` | `>= 5.6` |
-
-## Overview
-
-- [UI](https://github.com/contributte/application/blob/master/.docs/README.md#ui)
-    - [Presenter](https://github.com/contributte/application/blob/master/.docs/README.md#presenter)
-        - [StructuredTemplates](https://github.com/contributte/application/blob/master/.docs/README.md#structured-templates)
-    - [Control](https://github.com/contributte/application/blob/master/.docs/README.md#control)
-    - [Component](https://github.com/contributte/application/blob/master/.docs/README.md#component)
-- [Responses](https://github.com/contributte/application/blob/master/.docs/README.md#responses)
-    - [CSVResponse](https://github.com/contributte/application/blob/master/.docs/README.md#csvresponse)
-    - [ImageResponse](https://github.com/contributte/application/blob/master/.docs/README.md#imageresponse)
-    - [JsonPrettyResponse](https://github.com/contributte/application/blob/master/.docs/README.md#psr7streamresponse)
-    - [PSR7StreamResponse](https://github.com/contributte/application/blob/master/.docs/README.md#flyresponse)
-    - [FlyResponse - send file/buffer on-the-fly](https://github.com/contributte/application/blob/master/.docs/README.md#flyresponse)
-    - [XmlResponse](https://github.com/contributte/application/blob/master/.docs/README.md#xmlresponse)
+| State       | Version | Branch   | Nette | PHP     |
+|-------------|---------|----------|-------|---------|
+| dev         | `^0.5`  | `master` | 3.0+  | `^7.2`  |
+| stable      | `^0.4`  | `master` | 3.0+  | `^7.2`  |
+| stable      | `^0.3`  | `master` | 2.4   | `>=7.1` |
+| stable      | `^0.2`  | `master` | 2.4   | `>=5.6` |
 
 ## Maintainers
 

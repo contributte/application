@@ -1,7 +1,8 @@
-# Application
+# Contributte Application
 
 ## Content
 
+- [Setup](#setup)
 - [UI](#ui)
     - [Presenter](#presenter)
         - [StructuredTemplates](#structured-templates)
@@ -15,6 +16,12 @@
     - [FlyResponse - send file/buffer on-the-fly](#flyresponse)
     - [XmlResponse](#xmlresponse)
     - [StringResponse](#stringresponse)
+
+## Setup
+
+```bash
+composer require contributte/application
+```
 
 ## UI
 
@@ -163,7 +170,6 @@ $this->sendResponse($response);
 
 ```php
 use Contributte\Application\Response\Fly\Adapter\CallbackAdapter;
-use Contributte\Application\Response\Fly\Buffer\Buffer;
 use Contributte\Application\Response\Fly\FlyFileResponse;
 use Nette\Http\IRequest;
 use Nette\Http\IResponse;
