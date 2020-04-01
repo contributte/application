@@ -13,7 +13,7 @@
   ],
   "require": {
     "php": "^7.2",
-    "nette/application": "~3.0.0"
+    "nette/application": "^3.0.0"
   },
   "require-dev": {
     "nette/http": "~2.4.8 || ~3.0.0",
