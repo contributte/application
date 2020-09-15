@@ -90,13 +90,12 @@ class CSVResponse implements IResponse
 		$delimiter = '"' . $this->delimiter . '"';
 
 		foreach ($this->data as $row) {
+			$csvRow = '"' . implode($delimiter, (array) $row) . '"' . "\r\n";
 			if (strtolower($this->outputEncoding) === 'utf-8') {
-				echo '"' . implode($delimiter, (array) $row) . '"';
+				echo $csvRow;
 			} else {
-				echo iconv('UTF-8', $this->outputEncoding, '"' . implode($delimiter, (array) $row) . '"');
+				echo iconv('UTF-8', $this->outputEncoding, $csvRow);
 			}
-
-			echo "\r\n";
 		}
 
 		if (function_exists('ob_end_flush')) {
