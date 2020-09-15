@@ -91,6 +91,7 @@ class CSVResponse implements IResponse
 
 		foreach ($this->data as $row) {
 			$csvRow = '"' . implode($delimiter, (array) $row) . '"' . "\r\n";
+
 			if (strtolower($this->outputEncoding) === 'utf-8') {
 				echo $csvRow;
 			} else {
