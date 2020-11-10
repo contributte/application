@@ -40,6 +40,10 @@ class CSVResponse implements IResponse
 
 	/**
 	 * @param mixed[] $data
+	 * @param string  $name
+	 * @param string  $outputEncoding
+	 * @param string  $delimiter
+	 * @param bool    $includeBom
 	 */
 	public function __construct(
 		array $data,
@@ -83,19 +87,17 @@ class CSVResponse implements IResponse
 		}
 
 		// Output data
-		if ($this->includeBom && strtolower($this->outputEncoding) === 'utf-8') {
-			echo b"\xEF\xBB\xBF";
+		if ($this->includeBom) {
+			echo $this->getBom();
 		}
 
-		$delimiter = '"' . $this->delimiter . '"';
-
 		foreach ($this->data as $row) {
-			$csvRow = '"' . implode($delimiter, (array) $row) . '"' . "\r\n";
+			$csvRow = $this->printCsv($row);
 
 			if (strtolower($this->outputEncoding) === 'utf-8') {
 				echo $csvRow;
 			} else {
-				echo iconv('UTF-8', $this->outputEncoding, $csvRow);
+				echo mb_convert_encoding($csvRow, $this->outputEncoding);
 			}
 		}
 
@@ -104,4 +106,30 @@ class CSVResponse implements IResponse
 		}
 	}
 
+	private function getBom(): string
+	{
+		switch (strtolower($this->outputEncoding)) {
+			case 'utf-8':
+				return b"\xEF\xBB\xBF";
+			case 'utf-16':
+				return b"\xFF\xFE";
+			default:
+				return '';
+		}
+	}
+
+	/**
+	 * @param mixed[] $row
+	 * @return string
+	 */
+	private function printCsv(array $row): string
+	{
+		$out = fopen('php://memory', 'wb+');
+		fputcsv($out, $row, $this->delimiter);
+		rewind($out);
+		$c = stream_get_contents($out);
+		fclose($out);
+
+		return  ($c);
+	}
 }

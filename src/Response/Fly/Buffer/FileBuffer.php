@@ -26,7 +26,9 @@ class FileBuffer implements Buffer
 	 */
 	public function write($data): void
 	{
-		fwrite($this->pointer, $data);
+		if (stream_get_meta_data($this->pointer)['mode'] !== 'r') { // readonly stream
+			fwrite($this->pointer, $data);
+		}
 	}
 
 	/**
