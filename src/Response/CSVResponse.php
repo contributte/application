@@ -5,6 +5,7 @@ namespace Contributte\Application\Response;
 use Nette\Application\IResponse;
 use Nette\Http\IRequest as IHttpRequest;
 use Nette\Http\IResponse as IHttpResponse;
+use Nette\InvalidStateException;
 use Tracy\Debugger;
 
 /**
@@ -39,11 +40,11 @@ class CSVResponse implements IResponse
 	];
 
 	/**
-	 * @param mixed[] $data
-	 * @param string  $name
-	 * @param string  $outputEncoding
-	 * @param string  $delimiter
-	 * @param bool    $includeBom
+	 * @param mixed[] $data Input data
+	 * @param string  $name Name of downloaded CSV file
+	 * @param string  $outputEncoding Output encodding
+	 * @param string  $delimiter CSV delimiter
+	 * @param bool    $includeBom Include BOM
 	 */
 	public function __construct(
 		array $data,
@@ -120,16 +121,25 @@ class CSVResponse implements IResponse
 
 	/**
 	 * @param mixed[] $row
-	 * @return string
 	 */
 	private function printCsv(array $row): string
 	{
 		$out = fopen('php://memory', 'wb+');
+
+		if ($out === false) {
+			throw new InvalidStateException('Unable to open memory stream');
+		}
+
 		fputcsv($out, $row, $this->delimiter);
 		rewind($out);
 		$c = stream_get_contents($out);
 		fclose($out);
 
-		return  ($c);
+		if ($c === false) {
+			throw new InvalidStateException('Unable to read from memory stream');
+		}
+
+		return $c;
 	}
+
 }

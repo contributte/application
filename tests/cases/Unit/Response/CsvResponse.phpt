@@ -13,7 +13,7 @@ use Nette\Http\UrlScript;
 use Tester\Assert;
 
 test(static function (): void {
-	$csv = new CsvResponse([
+	$csv = new CSVResponse([
 		['a', 'b'],
 		['c', 'd'],
 	], 'some.csv', 'utf-16');
@@ -25,7 +25,7 @@ test(static function (): void {
 });
 
 test(static function (): void {
-	$csv = new CsvResponse([
+	$csv = new CSVResponse([
 		['a', 'b'],
 		['c', 'd'],
 	], 'some.csv');
