@@ -41,10 +41,6 @@ class CSVResponse implements IResponse
 
 	/**
 	 * @param mixed[] $data Input data
-	 * @param string  $name Name of downloaded CSV file
-	 * @param string  $outputEncoding Output encodding
-	 * @param string  $delimiter CSV delimiter
-	 * @param bool    $includeBom Include BOM
 	 */
 	public function __construct(
 		array $data,
