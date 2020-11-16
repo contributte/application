@@ -5,6 +5,7 @@ namespace Contributte\Application\Response;
 use Nette\Application\IResponse;
 use Nette\Http\IRequest as IHttpRequest;
 use Nette\Http\IResponse as IHttpResponse;
+use Nette\InvalidStateException;
 use Tracy\Debugger;
 
 /**
@@ -39,7 +40,11 @@ class CSVResponse implements IResponse
 	];
 
 	/**
-	 * @param mixed[] $data
+	 * @param mixed[] $data Input data
+	 * @param string  $name Name of downloaded CSV file
+	 * @param string  $outputEncoding Output encodding
+	 * @param string  $delimiter CSV delimiter
+	 * @param bool    $includeBom Include BOM
 	 */
 	public function __construct(
 		array $data,
@@ -83,25 +88,58 @@ class CSVResponse implements IResponse
 		}
 
 		// Output data
-		if ($this->includeBom && strtolower($this->outputEncoding) === 'utf-8') {
-			echo b"\xEF\xBB\xBF";
+		if ($this->includeBom) {
+			echo $this->getBom();
 		}
 
-		$delimiter = '"' . $this->delimiter . '"';
-
 		foreach ($this->data as $row) {
-			if (strtolower($this->outputEncoding) === 'utf-8') {
-				echo '"' . implode($delimiter, (array) $row) . '"';
-			} else {
-				echo iconv('UTF-8', $this->outputEncoding, '"' . implode($delimiter, (array) $row) . '"');
-			}
+			$csvRow = $this->printCsv($row);
 
-			echo "\r\n";
+			if (strtolower($this->outputEncoding) === 'utf-8') {
+				echo $csvRow;
+			} else {
+				echo mb_convert_encoding($csvRow, $this->outputEncoding);
+			}
 		}
 
 		if (function_exists('ob_end_flush')) {
 			ob_end_flush();
 		}
+	}
+
+	private function getBom(): string
+	{
+		switch (strtolower($this->outputEncoding)) {
+			case 'utf-8':
+				return b"\xEF\xBB\xBF";
+			case 'utf-16':
+				return b"\xFF\xFE";
+			default:
+				return '';
+		}
+	}
+
+	/**
+	 * @param mixed[] $row
+	 */
+	private function printCsv(array $row): string
+	{
+		$out = fopen('php://memory', 'wb+');
+
+		if ($out === false) {
+			throw new InvalidStateException('Unable to open memory stream');
+		}
+
+		fputcsv($out, $row, $this->delimiter);
+		rewind($out);
+		$c = stream_get_contents($out);
+		fclose($out);
+
+		if ($c === false) {
+			throw new InvalidStateException('Unable to read from memory stream');
+		}
+
+		return $c;
 	}
 
 }
