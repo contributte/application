@@ -44,6 +44,9 @@ For details on how to use this package, check out our [documentation](.docs).
 
 See [how to contribute](https://contributte.org) to this package. This package is currently maintained by these authors.
 
+<a href="https://github.com/f3l1x">
+    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
+</a>
 <a href="https://github.com/paveljanda">
     <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/1488874?v=3&s=80">
 </a>
@@ -51,4 +54,4 @@ See [how to contribute](https://contributte.org) to this package. This package i
 -----
 
 Consider to [support](https://contributte.com/partners) **contributte** development team.
-Also thank you for using this package. Thanks.
+Also thank you for using this package.
