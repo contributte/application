@@ -35,3 +35,15 @@ test(static function (): void {
 
 	Assert::equal($csvOutput, "a;b\nc;d\n");
 });
+
+test(static function (): void {
+	$csv = new CSVResponse([
+		['a', 'b'],
+		['c', 'd'],
+	], 'some.csv', 'windows-1250');
+	ob_start();
+	$csv->send(new Request(new UrlScript()), new Response());
+	$csvOutput = ob_get_clean();
+
+	Assert::equal($csvOutput, iconv('utf-8', 'windows-1250', "a;b\nc;d\n"));
+});
