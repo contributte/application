@@ -4,18 +4,18 @@
 
 - [Setup](#setup)
 - [UI](#ui)
-    - [Presenter](#presenter)
-        - [StructuredTemplates](#structured-templates)
-    - [Control](#control)
-    - [Component](#component)
+	- [Presenter](#presenter)
+		- [StructuredTemplates](#structured-templates)
+	- [Control](#control)
+	- [Component](#component)
 - [Responses](#responses)
-    - [CSVResponse](#csvresponse)
-    - [ImageResponse](#imageresponse)
-    - [JsonPrettyResponse](#psr7streamresponse)
-    - [PSR7StreamResponse](#flyresponse)
-    - [FlyResponse - send file/buffer on-the-fly](#flyresponse)
-    - [XmlResponse](#xmlresponse)
-    - [StringResponse](#stringresponse)
+	- [CSVResponse](#csvresponse)
+	- [ImageResponse](#imageresponse)
+	- [JsonPrettyResponse](#psr7streamresponse)
+	- [PSR7StreamResponse](#flyresponse)
+	- [FlyResponse - send file/buffer on-the-fly](#flyresponse)
+	- [XmlResponse](#xmlresponse)
+	- [StringResponse](#stringresponse)
 
 ## Setup
 
@@ -39,10 +39,10 @@ By extending the `BasePresenter` you can use these methods:
 A trait which modifies where the presenter templates are loaded from.
 
 - Views
-    - `%presenterDir%/templates/%view%.latte`
+	- `%presenterDir%/templates/%view%.latte`
 - Layouts
-    - `%presenterDir%/templates/@layout.latte`
-    - layouts of parent presenters are also looked for
+	- `%presenterDir%/templates/@layout.latte`
+	- layouts of parent presenters are also looked for
 
 ```php
 use Contributte\Application\UI\Presenter\StructuredTemplates;
@@ -50,7 +50,7 @@ use Nette\Application\UI\Presenter;
 
 class YourPresenter extends Presenter
 {
-    use StructuredTemplates;
+	use StructuredTemplates;
 }
 ```
 
@@ -155,11 +155,11 @@ use Nette\Http\IResponse;
 
 // Write to stdout over buffer class
 $adapter = new StdoutAdapter(function(Buffer $buffer, IRequest $request, IResponse $response) {
-    // Modify headers
-    $response->setHeader(..);
-    
-    // Write data
-    $buffer->write('Some data..');
+	// Modify headers
+	$response->setHeader(..);
+
+	// Write data
+	$buffer->write('Some data..');
 });
 $response = new FlyFileResponse($adapter, 'my.data');
 
@@ -175,14 +175,14 @@ use Nette\Http\IRequest;
 use Nette\Http\IResponse;
 
 $adapter = new CallbackAdapter(function(IRequest $request, IResponse $response) use ($model) {
-    // Modify headers
-    $response->setHeader(..);
-    
-    // Fetch topsecret data
-    $data = $this->facade->getData();
-    foreach ($data as $d) {
-        // Write or print data..
-    }
+	// Modify headers
+	$response->setHeader(..);
+
+	// Fetch topsecret data
+	$data = $this->facade->getData();
+	foreach ($data as $d) {
+		// Write or print data..
+	}
 });
 $response = new FlyFileResponse($adapter, 'my.data');
 
@@ -195,58 +195,58 @@ $this->sendResponse($response);
 final class BigOperationHandler
 {
 
-    /** @var Facade */
-    private $facade;
+	/** @var Facade */
+	private $facade;
 
-    /**
-     * @param Facade $facade
-     */
-    public function __construct(Facade $facade)
-    {
-        $this->facade = $facade;
-    }
+	/**
+	 * @param Facade $facade
+	 */
+	public function __construct(Facade $facade)
+	{
+		$this->facade = $facade;
+	}
 
-    public function toFlyResponse()
-    {
-        $adapter = new CallbackAdapter(function (IRequest $request, IResponse $response) {
-            // Modify headers
-            $response->setHeader(..);
+	public function toFlyResponse()
+	{
+		$adapter = new CallbackAdapter(function (IRequest $request, IResponse $response) {
+			// Modify headers
+			$response->setHeader(..);
 
-            // Fetch topsecret data
-            $data = $this->facade->getData();
-            foreach ($data as $d) {
-                // Write or print data..
-            }
-        });
+			// Fetch topsecret data
+			$data = $this->facade->getData();
+			foreach ($data as $d) {
+				// Write or print data..
+			}
+		});
 
-        return new FlyFileResponse($adapter, 'file.ext');
+		return new FlyFileResponse($adapter, 'file.ext');
 
-        // or
-        return new FlyResponse($adapter);
-    }
+		// or
+		return new FlyResponse($adapter);
+	}
 }
 
 interface IBigOperationHandlerFactory
 {
 
-    /**
-     * @return BigOperationHandler
-     */
-    public function create();
+	/**
+	 * @return BigOperationHandler
+	 */
+	public function create();
 
 }
 
 final class MyPresenter extends Nette\Application\UI\Presenter
 {
 
-    /** @var IBigOperationHandlerFactory @inject */
-    public $bigOperationHandlerFactory;
+	/** @var IBigOperationHandlerFactory @inject */
+	public $bigOperationHandlerFactory;
 
-    public function handleMagic()
-    {
-        $this->sendResponse(
-            $this->bigOperationHandlerFactory->create()->toFlyResponse()
-        );
-    }
+	public function handleMagic()
+	{
+		$this->sendResponse(
+			$this->bigOperationHandlerFactory->create()->toFlyResponse()
+		);
+	}
 }
 ```
