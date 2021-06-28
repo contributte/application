@@ -1,7 +1,13 @@
 {
   "name": "contributte/application",
   "description": "Extra contrib to nette/application",
-  "keywords": ["nette", "application", "presenter", "component", "control"],
+  "keywords": [
+    "nette",
+    "application",
+    "presenter",
+    "component",
+    "control"
+  ],
   "type": "library",
   "license": "MIT",
   "homepage": "https://github.com/contributte/application",
