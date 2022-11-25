@@ -25,13 +25,13 @@ final class PSR7StreamResponse implements IResponse
 	/**
 	 * @param StreamInterface $stream PSR7   Stream instance
 	 * @param string $name Imposed file name
-	 * @param string $contentType MIME content type
+	 * @param ?string $contentType MIME content type
 	 */
 	public function __construct(StreamInterface $stream, string $name, ?string $contentType = null)
 	{
 		$this->stream = $stream;
 		$this->name = $name;
-		$this->contentType = $contentType ?: 'application/octet-stream';
+		$this->contentType = $contentType ?? 'application/octet-stream';
 	}
 
 	/**

@@ -28,7 +28,7 @@ class JsonPrettyResponse implements IResponse
 	public function __construct($payload, ?string $contentType = null)
 	{
 		$this->payload = $payload;
-		$this->contentType = $contentType ?: 'application/json';
+		$this->contentType = $contentType ?? 'application/json';
 	}
 
 	public function setCode(int $code): void
