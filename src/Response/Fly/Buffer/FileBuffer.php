@@ -36,6 +36,7 @@ class FileBuffer implements Buffer
 	 */
 	public function read(int $size)
 	{
+		/** @var positive-int $size */
 		return fread($this->pointer, $size);
 	}
 

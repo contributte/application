@@ -4,6 +4,7 @@
 	<rule ref="./vendor/ninjify/coding-standard/contributte.xml">
 		<exclude name="SlevomatCodingStandard.ControlStructures.RequireTernaryOperator.TernaryOperatorNotUsed" />
 		<exclude name="SlevomatCodingStandard.PHP.TypeCast" />
+		<exclude name="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable" />
 	</rule>
 
 	<!-- Specific rules -->

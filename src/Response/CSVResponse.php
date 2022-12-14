@@ -110,8 +110,10 @@ class CSVResponse implements IResponse
 		switch (strtolower($this->outputEncoding)) {
 			case 'utf-8':
 				return b"\xEF\xBB\xBF";
+
 			case 'utf-16':
 				return b"\xFF\xFE";
+
 			default:
 				return '';
 		}
