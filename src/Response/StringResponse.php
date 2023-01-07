@@ -48,8 +48,8 @@ final class StringResponse implements IResponse
 
 	public function send(Nette\Http\IRequest $httpRequest, Nette\Http\IResponse $httpResponse): void
 	{
-		$httpResponse->addHeader('Content-Type', $this->contentType);
-		$httpResponse->addHeader(
+		$httpResponse->setHeader('Content-Type', $this->contentType);
+		$httpResponse->setHeader(
 			'Content-Disposition',
 			($this->attachment ? 'attachment;' : '') . 'filename="' . $this->name . '"'
 		);
