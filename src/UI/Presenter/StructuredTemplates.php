@@ -2,11 +2,14 @@
 
 namespace Contributte\Application\UI\Presenter;
 
+use Nette\Application\UI\Presenter;
 use Nette\Utils\Strings;
 use ReflectionClass;
 
 /**
  * Use in Presenter
+ *
+ * @mixin Presenter
  */
 trait StructuredTemplates
 {
@@ -16,6 +19,10 @@ trait StructuredTemplates
 	 */
 	public function formatLayoutTemplateFiles(): array
 	{
+		if (preg_match('#/|\\\\#', (string) $this->layout)) {
+			return [$this->layout];
+		}
+
 		$called = static::class;
 		$classes = [$called] + class_parents($called);
 		$list = [];
