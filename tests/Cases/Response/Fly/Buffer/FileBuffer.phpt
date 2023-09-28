@@ -1,16 +1,14 @@
 <?php declare(strict_types = 1);
 
-/**
- * Test: Response\Fly\Buffer\FileBuffer
- */
-
 use Contributte\Application\Response\Fly\Buffer\FileBuffer;
+use Contributte\Tester\Environment;
+use Contributte\Tester\Toolkit;
 use Tester\Assert;
 
-require_once __DIR__ . '/../../../../../bootstrap.php';
+require_once __DIR__ . '/../../../../bootstrap.php';
 
-test(function (): void {
-	$file = TEMP_DIR . '/test1.file' . time();
+Toolkit::test(function (): void {
+	$file = Environment::getTmpDir() . '/test1.file' . time();
 	$b = new FileBuffer($file, 'w');
 	$b->write('foobar');
 	$b->close();
@@ -18,8 +16,8 @@ test(function (): void {
 	Assert::equal('foobar', file_get_contents($file));
 });
 
-test(function (): void {
-	$file = TEMP_DIR . '/test2.file' . time();
+Toolkit::test(function (): void {
+	$file = Environment::getTmpDir() . '/test2.file' . time();
 	file_put_contents($file, 'foobar');
 
 	$b = new FileBuffer($file, 'r');
@@ -28,8 +26,8 @@ test(function (): void {
 	Assert::equal('foobar', file_get_contents($file));
 });
 
-test(function (): void {
-	$file = TEMP_DIR . '/test3.file' . time();
+Toolkit::test(function (): void {
+	$file = Environment::getTmpDir() . '/test3.file' . time();
 	file_put_contents($file, 'foobar');
 
 	$b = new FileBuffer($file, 'r');
