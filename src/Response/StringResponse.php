@@ -2,35 +2,29 @@
 
 namespace Contributte\Application\Response;
 
-use Nette;
-use Nette\Application\IResponse;
+use Nette\Application\Response;
+use Nette\Http\IRequest as HttpRequest;
+use Nette\Http\IResponse as HttpResponse;
 
-final class StringResponse implements IResponse
+final class StringResponse implements Response
 {
 
-	/** @var string */
-	private $content;
+	private string $content;
 
 	/**
 	 * Name of downloading file.
-	 *
-	 * @var string
 	 */
-	private $name;
+	private string $name;
 
 	/**
 	 * Content-Type of the contents.
-	 *
-	 * @var string
 	 */
-	private $contentType;
+	private string $contentType;
 
 	/**
 	 * Contents as http attachment?
-	 *
-	 * @var bool
 	 */
-	private $attachment = false;
+	private bool $attachment = false;
 
 	public function __construct(string $content, string $name, string $contentType = 'text/plain')
 	{
@@ -46,7 +40,7 @@ final class StringResponse implements IResponse
 		return $this;
 	}
 
-	public function send(Nette\Http\IRequest $httpRequest, Nette\Http\IResponse $httpResponse): void
+	public function send(HttpRequest $httpRequest, HttpResponse $httpResponse): void
 	{
 		$httpResponse->setHeader('Content-Type', $this->contentType);
 		$httpResponse->setHeader(

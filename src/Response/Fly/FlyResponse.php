@@ -3,22 +3,21 @@
 namespace Contributte\Application\Response\Fly;
 
 use Contributte\Application\Response\Fly\Adapter\Adapter;
-use Nette\Application\IResponse as ApplicationResponse;
-use Nette\Http\IRequest;
-use Nette\Http\IResponse;
+use Nette\Application\Response;
+use Nette\Http\IRequest as HttpRequest;
+use Nette\Http\IResponse as HttpResponse;
 
-class FlyResponse implements ApplicationResponse
+class FlyResponse implements Response
 {
 
-	/** @var Adapter */
-	protected $adapter;
+	protected Adapter $adapter;
 
 	public function __construct(Adapter $adapter)
 	{
 		$this->adapter = $adapter;
 	}
 
-	public function send(IRequest $request, IResponse $response): void
+	public function send(HttpRequest $request, HttpResponse $response): void
 	{
 		$this->adapter->send($request, $response);
 	}

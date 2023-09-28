@@ -12,7 +12,13 @@ class ProcessBuffer implements Buffer
 
 	public function __construct(string $command, string $mode = 'r')
 	{
-		$this->pointer = popen($command, $mode);
+		$resource = popen($command, $mode);
+
+		if ($resource === false) {
+			throw new RuntimeException('Cannot obtain resource');
+		}
+
+		$this->pointer = $resource;
 	}
 
 	/**
@@ -23,20 +29,16 @@ class ProcessBuffer implements Buffer
 		$this->close();
 	}
 
-	/**
-	 * @param mixed $data
-	 */
-	public function write($data): void
+	public function write(mixed $data): void
 	{
 		throw new RuntimeException('Not implemented...');
 	}
 
 	/**
-	 * @return mixed
+	 * @param positive-int $size
 	 */
-	public function read(int $size)
+	public function read(int $size): mixed
 	{
-		/** @var positive-int $size */
 		return fread($this->pointer, $size);
 	}
 
@@ -47,6 +49,7 @@ class ProcessBuffer implements Buffer
 
 	public function close(): int
 	{
+		// @phpstan-ignore-next-line
 		if (isset($this->pointer) && is_resource($this->pointer)) {
 			$res = fclose($this->pointer);
 			unset($this->pointer);

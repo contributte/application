@@ -2,6 +2,8 @@
 
 namespace Contributte\Application\Response\Fly\Buffer;
 
+use RuntimeException;
+
 class FileBuffer implements Buffer
 {
 
@@ -10,7 +12,13 @@ class FileBuffer implements Buffer
 
 	public function __construct(string $file, string $mode)
 	{
-		$this->pointer = fopen($file, $mode);
+		$resource = fopen($file, $mode);
+
+		if ($resource === false) {
+			throw new RuntimeException('Cannot obtain resource');
+		}
+
+		$this->pointer = $resource;
 	}
 
 	/**
@@ -21,22 +29,18 @@ class FileBuffer implements Buffer
 		$this->close();
 	}
 
-	/**
-	 * @param mixed $data
-	 */
-	public function write($data): void
+	public function write(mixed $data): void
 	{
 		if (stream_get_meta_data($this->pointer)['mode'] !== 'r') { // readonly stream
-			fwrite($this->pointer, $data);
+			fwrite($this->pointer, $data); // @phpstan-ignore-line
 		}
 	}
 
 	/**
-	 * @return mixed
+	 * @param positive-int $size
 	 */
-	public function read(int $size)
+	public function read(int $size): mixed
 	{
-		/** @var positive-int $size */
 		return fread($this->pointer, $size);
 	}
 
@@ -47,6 +51,7 @@ class FileBuffer implements Buffer
 
 	public function close(): int
 	{
+		// @phpstan-ignore-next-line
 		if (isset($this->pointer) && is_resource($this->pointer)) {
 			$res = fclose($this->pointer);
 			unset($this->pointer);

@@ -9,18 +9,16 @@ use Nette\Http\IResponse;
 class FlyFileResponse extends FlyResponse
 {
 
-	/** @var string */
-	private $contentType = 'application/octet-stream';
+	private string $contentType = 'application/octet-stream';
 
-	/** @var bool */
-	private $forceDownload = true;
+	private bool $forceDownload = true;
 
-	/** @var string */
-	private $filename;
+	private string $filename;
 
 	public function __construct(Adapter $adapter, string $filename)
 	{
 		parent::__construct($adapter);
+
 		$this->filename = $filename;
 	}
 

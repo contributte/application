@@ -2,25 +2,22 @@
 
 namespace Contributte\Application\Response;
 
-use Nette\Application\IResponse;
-use Nette\Http\IRequest as IHttpRequest;
-use Nette\Http\IResponse as IHttpResponse;
+use Nette\Application\Response;
+use Nette\Http\IRequest as HttpRequest;
+use Nette\Http\IResponse as HttpResponse;
 use Psr\Http\Message\StreamInterface;
 
 /**
  * File download response from PSR7 stream.
  */
-final class PSR7StreamResponse implements IResponse
+final class PSR7StreamResponse implements Response
 {
 
-	/** @var StreamInterface */
-	private $stream;
+	private StreamInterface $stream;
 
-	/** @var string */
-	private $name;
+	private string $name;
 
-	/** @var string */
-	private $contentType;
+	private string $contentType;
 
 	/**
 	 * @param StreamInterface $stream PSR7   Stream instance
@@ -58,7 +55,7 @@ final class PSR7StreamResponse implements IResponse
 		return $this->contentType;
 	}
 
-	public function send(IHttpRequest $httpRequest, IHttpResponse $httpResponse): void
+	public function send(HttpRequest $httpRequest, HttpResponse $httpResponse): void
 	{
 		// Set response headers for the file download
 		$httpResponse->setHeader('Content-Length', (string) $this->stream->getSize());

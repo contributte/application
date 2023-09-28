@@ -9,15 +9,16 @@ use Nette\Http\IResponse;
 class ProcessAdapter implements Adapter
 {
 
-	/** @var string */
-	private $command;
+	private string $command;
 
-	/** @var string */
-	private $mode;
+	private string $mode;
 
-	/** @var int */
-	private $buffersize;
+	/** @var positive-int */
+	private int $buffersize;
 
+	/**
+	 * @param positive-int $buffersize
+	 */
 	public function __construct(string $command, string $mode = 'r', int $buffersize = 8192)
 	{
 		$this->command = $command;
@@ -35,7 +36,7 @@ class ProcessAdapter implements Adapter
 			$output = $b->read($this->buffersize);
 
 			// Goes to ouput
-			echo $output;
+			echo $output; // @phpstan-ignore-line
 		}
 
 		// Close file Buffer

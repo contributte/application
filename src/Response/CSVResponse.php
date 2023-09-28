@@ -2,45 +2,40 @@
 
 namespace Contributte\Application\Response;
 
-use Nette\Application\IResponse;
-use Nette\Http\IRequest as IHttpRequest;
-use Nette\Http\IResponse as IHttpResponse;
+use Nette\Application\Response;
+use Nette\Http\IRequest as HttpRequest;
+use Nette\Http\IResponse as HttpResponse;
 use Nette\InvalidStateException;
 use Tracy\Debugger;
 
 /**
  * CSV file download response
  */
-class CSVResponse implements IResponse
+class CSVResponse implements Response
 {
 
-	/** @var string */
-	protected $contentType = 'application/octet-stream';
+	protected string $contentType = 'application/octet-stream';
 
-	/** @var string */
-	protected $delimiter;
+	protected string $delimiter;
 
-	/** @var mixed[] */
-	protected $data;
+	/** @var array<int|string, array<scalar>> */
+	protected array $data;
 
-	/** @var string */
-	protected $outputEncoding;
+	protected string $outputEncoding;
 
-	/** @var bool */
-	protected $includeBom;
+	protected bool $includeBom;
 
-	/** @var string */
-	protected $name;
+	protected string $name;
 
 	/** @var string[] */
-	protected $headers = [
+	protected array $headers = [
 		'Expires' => '0',
 		'Cache-Control' => 'no-cache',
 		'Pragma' => 'Public',
 	];
 
 	/**
-	 * @param mixed[] $data Input data
+	 * @param array<int|string, array<scalar>> $data Input data
 	 */
 	public function __construct(
 		array $data,
@@ -61,7 +56,7 @@ class CSVResponse implements IResponse
 		$this->includeBom = $includeBom;
 	}
 
-	public function send(IHttpRequest $httpRequest, IHttpResponse $httpResponse): void
+	public function send(HttpRequest $httpRequest, HttpResponse $httpResponse): void
 	{
 		// Disable tracy bar
 		if (class_exists(Debugger::class)) {
@@ -110,17 +105,15 @@ class CSVResponse implements IResponse
 		switch (strtolower($this->outputEncoding)) {
 			case 'utf-8':
 				return b"\xEF\xBB\xBF";
-
 			case 'utf-16':
 				return b"\xFF\xFE";
-
 			default:
 				return '';
 		}
 	}
 
 	/**
-	 * @param mixed[] $row
+	 * @param array<scalar> $row
 	 */
 	private function printCsv(array $row): string
 	{

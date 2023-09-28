@@ -2,30 +2,23 @@
 
 namespace Contributte\Application\Response;
 
-use Nette\Application\IResponse;
-use Nette\Http\IRequest as IHttpRequest;
-use Nette\Http\IResponse as IHttpResponse;
+use Nette\Application\Response;
+use Nette\Http\IRequest as HttpRequest;
+use Nette\Http\IResponse as HttpResponse;
 use Nette\Utils\Json;
 
-class JsonPrettyResponse implements IResponse
+class JsonPrettyResponse implements Response
 {
 
-	/** @var int */
-	private $code = IHttpResponse::S200_OK;
+	private int $code = HttpResponse::S200_OK;
 
-	/** @var mixed */
-	private $payload;
+	private mixed $payload;
 
-	/** @var string */
-	private $contentType;
+	private string $contentType;
 
-	/** @var string|null */
-	private $expiration;
+	private ?string $expiration = null;
 
-	/**
-	 * @param mixed $payload
-	 */
-	public function __construct($payload, ?string $contentType = null)
+	public function __construct(mixed $payload, ?string $contentType = null)
 	{
 		$this->payload = $payload;
 		$this->contentType = $contentType ?? 'application/json';
@@ -61,21 +54,18 @@ class JsonPrettyResponse implements IResponse
 		$this->expiration = $expiration;
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getPayload()
+	public function getPayload(): mixed
 	{
 		return $this->payload;
 	}
 
-	public function send(IHttpRequest $httpRequest, IHttpResponse $httpResponse): void
+	public function send(HttpRequest $httpRequest, HttpResponse $httpResponse): void
 	{
 		$httpResponse->setContentType($this->getContentType(), 'utf-8');
 		$httpResponse->setExpiration($this->expiration);
 		$httpResponse->setCode($this->code);
 
-		echo Json::encode($this->getPayload(), Json::PRETTY);
+		echo Json::encode($this->getPayload(), pretty: true);
 	}
 
 }

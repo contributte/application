@@ -2,38 +2,31 @@
 
 namespace Contributte\Application\Response;
 
-use Nette\Application\IResponse;
-use Nette\Application\UI\ITemplate;
-use Nette\Http\IRequest as IHttpRequest;
-use Nette\Http\IResponse as IHttpResponse;
+use Nette\Application\Response;
+use Nette\Application\UI\Template;
+use Nette\Http\IRequest as HttpRequest;
+use Nette\Http\IResponse as HttpResponse;
 
-class XmlResponse implements IResponse
+class XmlResponse implements Response
 {
 
-	/** @var mixed */
-	private $source;
+	private string|Template $source;
 
-	/**
-	 * @param mixed $source
-	 */
-	public function __construct($source)
+	public function __construct(string|Template $source)
 	{
 		$this->source = $source;
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getSource()
+	public function getSource(): string|Template
 	{
 		return $this->source;
 	}
 
-	public function send(IHttpRequest $httpRequest, IHttpResponse $httpResponse): void
+	public function send(HttpRequest $httpRequest, HttpResponse $httpResponse): void
 	{
 		$httpResponse->addHeader('Content-Type', 'text/xml');
 
-		if ($this->source instanceof ITemplate) {
+		if ($this->source instanceof Template) {
 			$this->source->render();
 		} else {
 			echo $this->source;

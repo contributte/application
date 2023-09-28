@@ -7,15 +7,12 @@ interface Buffer
 
 	public const BLOCK = 8196;
 
-	/**
-	 * @param mixed $data
-	 */
-	public function write($data): void;
+	public function write(mixed $data): void;
 
 	/**
-	 * @return mixed
+	 * @param positive-int $size
 	 */
-	public function read(int $size);
+	public function read(int $size): mixed;
 
 	public function eof(): bool;
 
