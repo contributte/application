@@ -19,16 +19,13 @@
   ],
   "require": {
     "php": ">=7.2",
-    "nette/application": "^3.0.0 || ^4.0"
+    "nette/application": "^4.0.0"
   },
   "require-dev": {
-    "nette/http": "~2.4.8 || ^3.0.0",
-    "ninjify/nunjuck": "^0.3.0",
-    "ninjify/qa": "^0.13.0",
-    "phpstan/phpstan": "^1.0",
-    "phpstan/phpstan-deprecation-rules": "^1.0",
-    "phpstan/phpstan-nette": "^1.0",
-    "phpstan/phpstan-strict-rules": "^1.0",
+    "nette/http": "^4.0.0",
+    "contributte/qa": "^0.4.0",
+    "contributte/phpstan": "^0.1.0",
+    "contributte/tester": "^0.3.0",
     "psr/http-message": "~1.0.1",
     "tracy/tracy": "~2.9.1"
   },
@@ -39,7 +36,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Cases\\": "tests/cases"
+      "Tests\\": "tests"
     }
   },
   "minimum-stability": "dev",
