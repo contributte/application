@@ -84,7 +84,7 @@ class CSVResponse implements Response
 		}
 
 		foreach ($this->data as $row) {
-			$csvRow = $this->printCsv($row);
+			$csvRow = $this->printCsv((array) $row); // @phpstan-ignore-line
 
 			if (strtolower($this->outputEncoding) === 'utf-8') {
 				echo $csvRow;
