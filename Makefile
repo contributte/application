@@ -1,27 +1,29 @@
-.PHONY: qa lint cs csf phpstan tests coverage
+.PHONY: install qa cs csf phpstan tests coverage
 
-all:
-	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
+install:
+	composer update
 
-vendor: composer.json composer.lock
-	composer install
+qa: phpstan cs
 
-qa: lint phpstan cs
+cs:
+ifdef GITHUB_ACTION
+	vendor/bin/phpcs --standard=ruleset.xml --encoding=utf-8 --extensions="php,phpt" --colors -nsp -q --report=checkstyle src tests | cs2pr
+else
+	vendor/bin/phpcs --standard=ruleset.xml --encoding=utf-8 --extensions="php,phpt" --colors -nsp src tests
+endif
 
-lint: vendor
-	vendor/bin/linter src tests
+csf:
+	vendor/bin/phpcbf --standard=ruleset.xml --encoding=utf-8 --colors -nsp src tests
 
-cs: vendor
-	vendor/bin/codesniffer src tests
+phpstan:
+	vendor/bin/phpstan analyse -c phpstan.neon
 
-csf: vendor
-	vendor/bin/codefixer src tests
+tests:
+	vendor/bin/tester -s -p php --colors 1 -C tests/Cases
 
-phpstan: vendor
-	vendor/bin/phpstan analyse -l 8 -c phpstan.neon src
-
-tests: vendor
-	vendor/bin/tester -s -p php --colors 1 -C tests/cases
-
-coverage: vendor
-	vendor/bin/tester -s -p phpdbg --colors 1 -C --coverage ./coverage.xml --coverage-src ./src tests/cases
+coverage:
+ifdef GITHUB_ACTION
+	vendor/bin/tester -s -p phpdbg --colors 1 -C --coverage coverage.xml --coverage-src src tests/Cases
+else
+	vendor/bin/tester -s -p phpdbg --colors 1 -C --coverage coverage.html --coverage-src src tests/Cases
+endif
