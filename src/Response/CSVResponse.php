@@ -123,7 +123,7 @@ class CSVResponse implements Response
 			throw new InvalidStateException('Unable to open memory stream');
 		}
 
-		fputcsv($out, $row, $this->delimiter);
+		fputcsv($out, $row, $this->delimiter, escape: '\\');
 		rewind($out);
 		$c = stream_get_contents($out);
 		fclose($out);
