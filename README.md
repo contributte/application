@@ -2,7 +2,7 @@
 
 <p align=center>
   <a href="https://github.com/contributte/application/actions"><img src="https://badgen.net/github/checks/contributte/application/master?cache=300"></a>
-  <a href="https://coveralls.io/r/contributte/application"><img src="https://badgen.net/coveralls/c/github/contributte/application?cache=300"></a>
+  <a href="https://codecov.io/gh/contributte/application"><img src="https://badgen.net/codecov/c/github/contributte/application"></a>
   <a href="https://packagist.org/packages/contributte/application"><img src="https://badgen.net/packagist/dm/contributte/application"></a>
   <a href="https://packagist.org/packages/contributte/application"><img src="https://badgen.net/packagist/v/contributte/application"></a>
 </p>
@@ -34,8 +34,8 @@ For details on how to use this package, check out our [documentation](.docs).
 
 | State       | Version | Branch   | Nette | PHP     |
 |-------------|---------|----------|-------|---------|
-| dev         | `^0.6`  | `master` | 3.0+  | `>=8.1`  |
-| stable      | `^0.5`  | `master` | 3.0+  | `>=7.2` |
+| dev         | `^0.7`  | `master` | 3.0+  | `>=8.2` |
+| stable      | `^0.6`  | `master` | 3.0+  | `>=8.1` |
 
 
 ## Development
