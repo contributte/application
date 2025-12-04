@@ -7,6 +7,7 @@
 	- [Presenter](#presenter)
 		- [StructuredTemplates](#structured-templates)
 	- [Control](#control)
+		- [MagicControl](#magiccontrol)
 	- [Component](#component)
 - [Responses](#responses)
 	- [CSVResponse](#csvresponse)
@@ -57,6 +58,67 @@ class YourPresenter extends Presenter
 ### Control
 
 - NullControl - displays nothing
+
+#### MagicControl
+
+MagicControl allows dynamic creation of components based on registered factories. This is useful when you want to create reusable components that can be configured via Neon.
+
+**1. Register the DI extension:**
+
+```neon
+extensions:
+    application: Contributte\Application\DI\ApplicationExtension
+
+application:
+    components:
+        latestArticles: App\Components\LatestArticlesControlFactory
+        sidebar: App\Components\SidebarControlFactory
+```
+
+**2. Create your component factory interface:**
+
+```php
+namespace App\Components;
+
+interface LatestArticlesControlFactory
+{
+    public function create(): LatestArticlesControl;
+}
+```
+
+**3. Use the MagicComponents trait in your presenter:**
+
+```php
+use Contributte\Application\UI\MagicComponents;
+use Contributte\Application\UI\MagicControl;
+use Nette\Application\UI\Presenter;
+use Nette\ComponentModel\IComponent;
+
+class BasePresenter extends Presenter
+{
+    use MagicComponents;
+
+    public function injectMagicComponents(MagicControl $magicControl): void
+    {
+        $this->setMagicComponentFactories($magicControl->getFactories());
+    }
+
+    protected function createComponent(string $name): ?IComponent
+    {
+        return $this->tryCreateMagicComponent($name) ?? parent::createComponent($name);
+    }
+}
+```
+
+**4. Use in Latte templates:**
+
+```latte
+{* Basic usage *}
+{control magic-latestArticles}
+
+{* With parameters (passed to component's render method) *}
+{control magic-latestArticles, count: 10}
+```
 
 ### Component
 

@@ -17,3 +17,5 @@ parameters:
 		- .docs
 
 	ignoreErrors:
+		-
+			identifier: trait.unused
