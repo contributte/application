@@ -22,10 +22,10 @@
     "nette/application": "^3.2.6 || ^4.0.0"
   },
   "require-dev": {
-    "nette/http": "^3.3.2 || ^4.0.0",
-    "contributte/qa": "^0.4.0",
     "contributte/phpstan": "^0.2.0",
+    "contributte/qa": "^0.4.0",
     "contributte/tester": "^0.4.0",
+    "nette/http": "^3.3.2 || ^4.0.0",
     "psr/http-message": "^1.0.1 || ^2.0.0",
     "tracy/tracy": "^2.9.1"
   },
@@ -38,6 +38,9 @@
     "psr-4": {
       "Tests\\": "tests"
     }
+  },
+  "conflict": {
+    "nette/application": "<3.2.6"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
