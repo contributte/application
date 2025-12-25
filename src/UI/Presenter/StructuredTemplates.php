@@ -3,7 +3,6 @@
 namespace Contributte\Application\UI\Presenter;
 
 use Nette\Application\UI\Presenter;
-use Nette\Utils\Strings;
 use ReflectionClass;
 
 /**
@@ -19,8 +18,10 @@ trait StructuredTemplates
 	 */
 	public function formatLayoutTemplateFiles(): array
 	{
-		if (preg_match('#/|\\\\#', (string) $this->layout)) {
-			return [$this->layout];
+		$layout = (string) $this->layout;
+
+		if (preg_match('#/|\\\\#', $layout) === 1) {
+			return [$layout];
 		}
 
 		$called = static::class;
@@ -29,12 +30,18 @@ trait StructuredTemplates
 
 		foreach ($classes as $class) {
 			// Skip Nette classes
-			if (Strings::startsWith($class, 'Nette\\')) {
+			if (str_starts_with($class, 'Nette\\')) {
 				continue;
 			}
 
 			$presenterReflection = new ReflectionClass($class);
-			$presenterDir = dirname($presenterReflection->getFileName());
+			$fileName = $presenterReflection->getFileName();
+
+			if ($fileName === false) {
+				continue;
+			}
+
+			$presenterDir = dirname($fileName);
 			$list[] = $presenterDir . '/templates/@layout.latte';
 		}
 
@@ -49,7 +56,13 @@ trait StructuredTemplates
 	public function formatTemplateFiles(): array
 	{
 		$presenterReflection = new ReflectionClass(static::class);
-		$presenterDir = dirname($presenterReflection->getFileName());
+		$fileName = $presenterReflection->getFileName();
+
+		if ($fileName === false) {
+			return [];
+		}
+
+		$presenterDir = dirname($fileName);
 
 		return [
 			$presenterDir . '/templates/' . $this->view . '.latte',
