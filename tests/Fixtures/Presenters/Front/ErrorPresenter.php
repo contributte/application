@@ -1,0 +1,35 @@
+<?php declare(strict_types = 1);
+
+namespace Tests\Fixtures\Presenters\Front;
+
+use Nette\Application\IPresenter;
+use Nette\Application\Request;
+use Nette\Application\Response;
+use Nette\Application\Responses\TextResponse;
+
+/**
+ * Fixture: Front module error presenter
+ */
+class ErrorPresenter implements IPresenter
+{
+
+	public const PRESENTER_NAME = 'Front:Error';
+
+	private ?Request $request = null;
+
+	public function run(Request $request): Response
+	{
+		$this->request = $request;
+
+		$exception = $request->getParameter('exception');
+		$message = $exception instanceof \Throwable ? $exception->getMessage() : 'Unknown error';
+
+		return new TextResponse('Front Error: ' . $message);
+	}
+
+	public function getRequest(): ?Request
+	{
+		return $this->request;
+	}
+
+}
