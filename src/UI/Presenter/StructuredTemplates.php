@@ -18,7 +18,7 @@ trait StructuredTemplates
 	 */
 	public function formatLayoutTemplateFiles(): array
 	{
-		$layout = (string) $this->layout;
+		$layout = (string) $this->getLayout();
 
 		if (preg_match('#/|\\\\#', $layout) === 1) {
 			return [$layout];
@@ -65,7 +65,7 @@ trait StructuredTemplates
 		$presenterDir = dirname($fileName);
 
 		return [
-			$presenterDir . '/templates/' . $this->view . '.latte',
+			$presenterDir . '/templates/' . $this->getView() . '.latte',
 		];
 	}
 
