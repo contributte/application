@@ -18,17 +18,30 @@
 Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
 </p>
 
+Contributte Application is a set of responses and presenter helpers for Nette Framework. It sends CSV, JSON, XML,
+image, string and PSR-7 stream responses, streams large output on the fly and loads presenter templates from the
+presenter's own folder.
+
 ## Usage
 
-To install latest version of `contributte/application` use [Composer](https://getcomposer.org).
+To install the latest version of `contributte/application`, use [Composer](https://getcomposer.org):
 
 ```bash
 composer require contributte/application
 ```
 
-## Documentation
+Requires PHP 8.2 or later and Nette 3.2 or later.
 
-For details on how to use this package, check out our [documentation](.docs).
+Send a response from a presenter action:
+
+```php
+use Contributte\Application\Response\CSVResponse;
+
+// Downloads users.csv with rows separated by ";"
+$this->sendResponse(new CSVResponse([['name', 'email'], ['John', 'john@example.com']], 'users.csv'));
+```
+
+The [documentation](.docs) covers the other responses, the UI helpers and the adapters.
 
 ## Versions
 
@@ -37,19 +50,30 @@ For details on how to use this package, check out our [documentation](.docs).
 | dev         | `^0.7`  | `master` | 3.2+  | `>=8.2` |
 | stable      | `^0.6`  | `master` | 3.0+  | `>=8.1` |
 
-
 ## Development
 
-See [how to contribute](https://contributte.org) to this package. This package is currently maintained by these authors.
+Install the dependencies and run the checks:
+
+```bash
+make install   # install dependencies
+make qa        # check code style and run static analysis
+make tests     # run tests
+```
+
+Run `make` to list every target.
+
+See [how to contribute](https://contributte.org/contributing.html) to this package.
+
+This package is maintained by these authors.
 
 <a href="https://github.com/f3l1x">
-    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
+  <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
 </a>
 <a href="https://github.com/paveljanda">
-    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/1488874?v=3&s=80">
+  <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/1488874?v=3&s=80">
 </a>
 
 -----
 
-Consider to [support](https://contributte.org/partners) **contributte** development team.
-Also thank you for using this package.
+Consider [supporting](https://contributte.org/partners.html) the **contributte** development team.
+Thank you for using this package.
