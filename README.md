@@ -32,32 +32,16 @@ composer require contributte/application
 
 Requires PHP 8.2 or later and Nette 3.2 or later.
 
-Create a response in a presenter and send it:
+Send a response from a presenter action:
 
 ```php
 use Contributte\Application\Response\CSVResponse;
-use Nette\Application\UI\Presenter;
 
-final class ExportPresenter extends Presenter
-{
-
-	public function actionDefault(): void
-	{
-		$data = [
-			['name', 'email'],
-			['John', 'john@example.com'],
-		];
-
-		// Downloads users.csv with rows separated by ";"
-		$this->sendResponse(new CSVResponse($data, 'users.csv'));
-	}
-
-}
+// Downloads users.csv with rows separated by ";"
+$this->sendResponse(new CSVResponse([['name', 'email'], ['John', 'john@example.com']], 'users.csv'));
 ```
 
-## Documentation
-
-For details on how to use this package, check out the [documentation](.docs).
+The [documentation](.docs) covers the other responses, the UI helpers and the adapters.
 
 ## Versions
 
@@ -68,9 +52,19 @@ For details on how to use this package, check out the [documentation](.docs).
 
 ## Development
 
+Install the dependencies and run the checks:
+
+```bash
+make install   # install dependencies
+make qa        # check code style and run static analysis
+make tests     # run tests
+```
+
+Run `make` to list every target.
+
 See [how to contribute](https://contributte.org/contributing.html) to this package.
 
-This package is currently maintained by these authors.
+This package is maintained by these authors.
 
 <a href="https://github.com/f3l1x">
   <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
